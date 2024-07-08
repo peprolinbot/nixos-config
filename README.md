@@ -1,5 +1,5 @@
 <h1 align="center">
-   <img src="./.repo/assets/logo/nixos-logo.png  " width="100px" /> 
+   <img src="./.repo/assets/logo/nixos-logo.png" width="100px" /> 
    <br>
       peprolinbot's Flakes 
    <br>
