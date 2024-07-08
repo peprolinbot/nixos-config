@@ -1,7 +1,7 @@
-{ ... }:
-{
+{...}: {
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
     __GL_GSYNC_ALLOWED = "0";
     __GL_VRR_ALLOWED = "0";
     _JAVA_AWT_WM_NONEREPARENTING = "1";

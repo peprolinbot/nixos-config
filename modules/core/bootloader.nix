@@ -1,7 +1,14 @@
-{ pkgs, ... }:
-{
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+{pkgs, ...}: {
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      efiSupport = true;
+      device = "nodev";
+      useOSProber = true;
+    };
+  };
   boot.kernelPackages = pkgs.linuxPackages_latest;
 }

@@ -1,7 +1,7 @@
 <h1 align="center">
-   <img src="./.github/assets/logo/nixos-logo.png  " width="100px" /> 
+   <img src="./.repo/assets/logo/nixos-logo.png  " width="100px" /> 
    <br>
-      Frost-Phoenix's Flakes 
+      peprolinbot's Flakes 
    <br>
       <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="600px" /> <br>
    <div align="center">
@@ -9,12 +9,6 @@
    <div align="center">
       <p></p>
       <div align="center">
-         <a href="https://github.com/Frost-Phoenix/nixos-config/stargazers">
-            <img src="https://img.shields.io/github/stars/Frost-Phoenix/nixos-config?color=F5BDE6&labelColor=303446&style=for-the-badge&logo=starship&logoColor=F5BDE6">
-         </a>
-         <a href="https://github.com/Frost-Phoenix/nixos-config/">
-            <img src="https://img.shields.io/github/repo-size/Frost-Phoenix/nixos-config?color=C6A0F6&labelColor=303446&style=for-the-badge&logo=github&logoColor=C6A0F6">
-         </a>
          <a = href="https://nixos.org">
             <img src="https://img.shields.io/badge/NixOS-unstable-blue.svg?style=for-the-badge&labelColor=303446&logo=NixOS&logoColor=white&color=91D7E3">
          </a>
@@ -32,22 +26,10 @@
 ### 🖼️ Gallery
 
 <p align="center">
-   <img src="./.github/assets/screenshots/1.png" /> <br>
-   <img src="./.github/assets/screenshots/2.png" /> <br>
-   <img src="./.github/assets/screenshots/3.png" /> <br>
-   Screenshots last updated <b>2024-04-09</b>
+   <img src="./.repo/assets/screenshots/1.png" /> <br>
+   <img src="./.repo/assets/screenshots/2.png" /> <br>
+   Screenshots last updated <b>8th July 2024</b>
 </p>
-
-<details>
-<summary>
-OLD (EXPAND)
-</summary>
-<p align="center">
-   <img src="./.github/assets/screenshots/1.old.png" width="800px" /> <br>
-   <img src="./.github/assets/screenshots/2.old.png" width="800px" /> <br>
-   <img src="./.github/assets/screenshots/3.old.png" width="800px" /> <br>
-</p>
-</details>
 
 # 🗃️ Overview
 
@@ -55,13 +37,9 @@ OLD (EXPAND)
 
 -   [flake.nix](flake.nix) base of the configuration
 -   [hosts](hosts) 🌳 per-host configurations that contain machine specific configurations
-    - [desktop](hosts/desktop/) 🖥️ Desktop specific configuration
-    - [laptop](hosts/laptop/) 💻 Laptop specific configuration
 -   [modules](modules) 🍱 modularized NixOS configurations
     -   [core](modules/core/) ⚙️ Core NixOS configuration
     -   [homes](modules/home/) 🏠 my [Home-Manager](https://github.com/nix-community/home-manager) config
--   [pkgs](flake/pkgs) 📦 packages exported by my flake
--   [wallpapers](wallpapers/) 🌄 wallpapers collection
 
 ### 📓 Components
 |                             | NixOS + Hyprland                                                                              |
@@ -80,10 +58,10 @@ OLD (EXPAND)
 | **Color Scheme**            | [Catppuccin][Catppuccin] |
 | **Cursor**                  | [Nordzy-cursors][Nordzy-cursors] |
 | **Icons**                   | [catppuccin-papirus-folders][catppuccin-papirus-folders] |
-| **Lockscreen**              | [Swaylock-effects][Swaylock-effects] |
+| **Lockscreen**              | [Hyprlock][Swaylock-effects] |
 | **Image Viewer**            | [imv][imv] |
 | **Media Player**            | [mpv][mpv] |
-| **Music Player**            | [audacious][audacious] |
+| **Music Player**            | [audacious][spotify_player] |
 | **Screenshot Software**     | [grimblast][grimblast] |
 | **Screen Recording**        | [wf-recorder][wf-recorder] |
 | **Clipboard**               | [wl-clip-persist][wl-clip-persist] |
@@ -194,26 +172,6 @@ toggle_oppacity.sh
 
 <details>
 <summary>
-maxfetch.sh 
-</summary>
-
-**Description:** This script is a modified version of the [jobcmax/maxfetch][maxfetch] script.
-
-**Usage:** ```maxfetch```
-</details>
-
-<details>
-<summary>
-music.sh 
-</summary>
-
-**Description:** This script is for managing Audacious (music player). If Audacious is currently running, it will be killed (stopping the music); otherwise, it will start Audacious in the 8th workspace and resume the music. 
-
-**Usage:** ```music```
-</details>
-
-<details>
-<summary>
 runbg.sh 
 </summary>
 
@@ -224,130 +182,7 @@ runbg.sh
 
 ### ⌨️ Keybinds
 
-View all keybinds by pressing ```$mainMod F1``` and wallpaper picker by pressing ```$mainMod w```. By default ```$mainMod``` is the ```SUPER``` key. 
-
-<details>
-<summary>
-Keybindings 
-</summary>
-
-- ```bind = $mainMod, Return, exec, kitty```
-- ```bind = ALT, Return, exec, kitty --title float_kitty```
-- ```bind = $mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'```
-- ```bind = $mainMod, B, exec, firefox```
-- ```bind = $mainMod, Q, killactive,```
-- ```bind = $mainMod, F, fullscreen, 0```
-- ```bind = $mainMod SHIFT, F, fullscreen, 1```
-- ```bind = $mainMod, Space, togglefloating,```
-- ```bind = $mainMod, D, exec, fuzzel```
-- ```bind = $mainMod, Escape, exec, swaylock```
-- ```bind = $mainMod SHIFT, Escape, exec, shutdown-script```
-- ```bind = $mainMod, P, pseudo,```
-- ```bind = $mainMod, J, togglesplit,```
-- ```bind = $mainMod, E, exec, nemo```
-- ```bind = $mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped```
-- ```bind = $mainMod, C ,exec, hyprpicker -a```
-- ```bind = $mainMod, W,exec, wallpaper-picker```
-</details>
-
-<details>
-<summary>
-Screenshot 
-</summary>
-
-- ```bind = $mainMod, Print, exec, grimblast --notify --cursor save area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png```
-- ```bind = ,Print, exec, grimblast --notify --cursor  copy area```
-</details>
-
-<details>
-<summary>
-Switch window focus 
-</summary>
-
-- ```bind = $mainMod, left, movefocus, l```
-- ```bind = $mainMod, right, movefocus, r```
-- ```bind = $mainMod, up, movefocus, u```
-- ```bind = $mainMod, down, movefocus, d```
-</details>
-
-<details>
-<summary>
-Switch workspace 
-</summary>
-
-- ```bind = $mainMod, 1, workspace, 1```
-- ```bind = $mainMod, 2, workspace, 2```
-- ```bind = $mainMod, 3, workspace, 3```
-- ```bind = $mainMod, 4, workspace, 4```
-- ```bind = $mainMod, 5, workspace, 5```
-- ```bind = $mainMod, 6, workspace, 6```
-- ```bind = $mainMod, 7, workspace, 7```
-- ```bind = $mainMod, 8, workspace, 8```
-- ```bind = $mainMod, 9, workspace, 9```
-- ```bind = $mainMod, 0, workspace, 10```
-</details>
-
-<details>
-<summary>
-Switch window to workspace 
-</summary>
-
-- ```bind = $mainMod SHIFT, 1, movetoworkspace, 1```
-- ```bind = $mainMod SHIFT, 2, movetoworkspace, 2```
-- ```bind = $mainMod SHIFT, 3, movetoworkspace, 3```
-- ```bind = $mainMod SHIFT, 4, movetoworkspace, 4```
-- ```bind = $mainMod SHIFT, 5, movetoworkspace, 5```
-- ```bind = $mainMod SHIFT, 6, movetoworkspace, 6```
-- ```bind = $mainMod SHIFT, 7, movetoworkspace, 7```
-- ```bind = $mainMod SHIFT, 8, movetoworkspace, 8```
-- ```bind = $mainMod SHIFT, 9, movetoworkspace, 9```
-- ```bind = $mainMod SHIFT, 0, movetoworkspace, 10```
-- ```bind = $mainMod CTRL, c, movetoworkspace, empty```
-</details>
-
-<details>
-<summary>
-Window control 
-</summary>
-
-- ```bind = $mainMod SHIFT, left, movewindow, l```
-- ```bind = $mainMod SHIFT, right, movewindow, r```
-- ```bind = $mainMod SHIFT, up, movewindow, u```
-- ```bind = $mainMod SHIFT, down, movewindow, d```
-- ```bind = $mainMod CTRL, left, resizeactive, -80 0```
-- ```bind = $mainMod CTRL, right, resizeactive, 80 0```
-- ```bind = $mainMod CTRL, up, resizeactive, 0 -80```
-- ```bind = $mainMod CTRL, down, resizeactive, 0 80```
-- ```bind = $mainMod ALT, left, moveactive,  -80 0```
-- ```bind = $mainMod ALT, right, moveactive, 80 0```
-- ```bind = $mainMod ALT, up, moveactive, 0 -80```
-- ```bind = $mainMod ALT, down, moveactive, 0 80```
-</details>
-
-<details>
-<summary>
-Media and volume controls 
-</summary>
-   
-- ```bind = ,XF86AudioRaiseVolume,exec, pamixer -i 2```
-- ```bind = ,XF86AudioLowerVolume,exec, pamixer -d 2```
-- ```bind = ,XF86AudioMute,exec, pamixer -t```
-- ```bind = ,XF86AudioPlay,exec, playerctl play-pause```
-- ```bind = ,XF86AudioNext,exec, playerctl next```
-- ```bind = ,XF86AudioPrev,exec, playerctl previous```
-- ```bind = , XF86AudioStop, exec, playerctl stop```
-- ```bind = $mainMod, mouse_down, workspace, e-1```
-- ```bind = $mainMod, mouse_up, workspace, e+1```
-</details>
-
-<details>
-<summary>
-Mouse binding 
-</summary>
-
-- ```bindm = $mainMod, mouse:272, movewindow```
-- ```bindm = $mainMod, mouse:273, resizewindow```
-</details>
+View all keybinds by pressing ```$mainMod F1```. By default ```$mainMod``` is the ```SUPER``` key. 
 
 # 🚀 Installation 
 
@@ -355,7 +190,7 @@ Mouse binding
 > Applying custom configurations, especially those related to your operating system, can have unexpected consequences and may interfere with your system's normal behavior. While I have tested these configurations on my own setup, there is no guarantee that they will work flawlessly on all systems. <br>
 > **I am not responsible for any issues that may arise from using this configuration.**
 
-> It is highly recommended to review the configuration contents and make necessary modifications to customize it to your needs before attempting the installation.
+> It is highly recommended to review the configuration contents and make necessary modifications to customize it to your needs before attempting the installation. Especially if you consider that I only use this on my own systems and I make almost no efforts for this to be used by anyone other than me.
 
 1. **Install NixOs**
 
@@ -366,75 +201,24 @@ Mouse binding
 
    ```
    nix-shell -p git
-   git clone https://github.com/Frost-Phoenix/nixos-config
+   git clone https://git.peprolinbot.com/peprolinbot/nixos-config
    cd nixos-config
    ```
-3. **Install script**
 
-   > First make sure to read the install script, it isn't long
-   
-   Execute and follow the installation script :
-   ```
-   ./install.sh
-   ```
-   > You will need to change the git account yourself in ./modules/home/git.nix
-   ```
-      programs.git = {
-         ...
-         userName = "Frost-Phoenix";
-         userEmail = "67cyril6767@gmail.com";
-         ...
-      };
-   ```
+2. **Customize**
+   Read everything (as much as you can anyway) and edit what you consider neccesary.
+
+3. **Install**
+
+   Run `sudo nixos-rebuild switch --flake .` and fix any errors that might arise
+
 4. **Reboot**
 
-   After rebooting, you'll be greeted by swaylock prompting for your password, with the wallpaper in the background.
-
-5. **Manual config**
-
-   Even though I use home manager, there is still a little bit of manual configuration to do:
-      - Set Aseprite theme (they are in the folder `./nixos-config/modules/home/aseprite/themes`).
-      - Enable Discord theme (in Discord settings under VENCORD > Themes).
-      - Configure the browser (for now, all browser configuration is done manually).
-
-### Install script walkthrough
-
-A brief walkthrough of what the install script does.
-
-1. **Get username**
-
-   You will receive a prompt to enter your username, with a confirmation check.
-
-2. **Set username**
-
-   The script will replace all occurancies of the default usename ```CURRENT_USERNAME``` by the given one stored in ```$username```
-
-3. Create basic directories
-
-   The following directories will be created:
-   - ```~/Music```
-   - ```~/Documents```
-   - ```~/Pictures/wallpapers/others```
-
-4. Copy the wallpapers
-
-   Then the wallpapers will be copied into ```~/Pictures/wallpapers/others``` which is the folder in which the ```wallpaper-picker.sh``` script will be looking for them.
-
-5. Get the hardware configuration
-
-   It will also automatically copy the hardware configuration from ```/etc/nixos/hardware-configuration.nix``` to ```./hosts/nixos/hardware-configuration.nix``` so that the hardware configuration used is yours and not the default one.
-
-6. Choose a host (desktop / laptop)
-
-   Now you will need to choose the host you want. It depend on whether you are using a desktop or laptop.
-
-7. Build the system
-
-   Lastly, it will build the system, which includes both the flake config and home-manager config.
+   After rebooting, you'll be greeted by regreet prompting for your password.
 
 # 👥 Credits
 
-Other dotfiles that I learned / copy from:
+Heavily based on [Frost-Phoenix's Flakes](https://github.com/Frost-Phoenix/nixos-config). And therefore, recursively, also:
 
 - Nix Flakes
   - [nomadics9/NixOS-Flake](https://github.com/nomadics9/NixOS-Flake): This is where I start my nixos / hyprland journey.
@@ -449,12 +233,7 @@ Other dotfiles that I learned / copy from:
   - [sioodmy/dotfiles](https://github.com/sioodmy/dotfiles)
   - [Ruixi-rebirth/flakes](https://github.com/Ruixi-rebirth/flakes)
 
-
-<!-- # ✨ Stars History -->
-
-<!-- <p align="center"><img src="https://api.star-history.com/svg?repos=frost-phoenix/nixos-config&type=Timeline&theme=dark" /></p> -->
-
-<p align="center"><img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" /></p>
+Please open an issue if i forgot to credit you.
 
 <!-- end of page, send back to the top -->
 
@@ -473,8 +252,8 @@ Other dotfiles that I learned / copy from:
 [yazi]: https://github.com/sxyazi/yazi
 [zsh]: https://ohmyz.sh/
 [oh-my-zsh]: https://ohmyz.sh/
-[Swaylock-effects]: https://github.com/mortie/swaylock-effects
-[audacious]: https://audacious-media-player.org/
+[hyprlock]: https://github.com/hyprwm/hyprlock
+[spotify_player]: https://github.com/aome510/spotify-player
 [mpv]: https://github.com/mpv-player/mpv
 [VSCodium]:https://vscodium.com/
 [Neovim]: https://github.com/neovim/neovim

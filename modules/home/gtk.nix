@@ -1,11 +1,15 @@
-{ pkgs, config, ... }:
 {
+  pkgs,
+  config,
+  ...
+}: {
   fonts.fontconfig.enable = true;
   home.packages = [
     pkgs.nerdfonts
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" ]; })
+    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono" "Noto"];})
     pkgs.twemoji-color-font
     pkgs.noto-fonts-emoji
+    pkgs.roboto
   ];
 
   gtk = {
@@ -31,7 +35,7 @@
       size = 22;
     };
   };
-  
+
   home.pointerCursor = {
     name = "Nordzy-cursors";
     package = pkgs.nordzy-cursor-theme;

@@ -1,17 +1,23 @@
-{ pkgs, config, inputs, ... }: 
 {
-  home.packages = with pkgs;[
+  pkgs,
+  config,
+  inputs,
+  ...
+}: {
+  home.packages = with pkgs; [
     ## Utils
     # gamemode
     # gamescope
     # winetricks
     # inputs.nix-gaming.packages.${pkgs.system}.wine-ge
 
+    ## Minecraft
+    inputs.fjordlauncher.packages.${pkgs.system}.fjordlauncher
+
     ## Cli games
-    _2048-in-terminal
     vitetris
     nethack
-    
+
     ## Celeste
     celeste-classic
     celeste-classic-pm
@@ -23,7 +29,8 @@
     ## Emulation
     sameboy
     snes9x
-    # cemu
-    # dolphin-emu
+    cemu
+    dolphin-emu
+    ryujinx
   ];
 }

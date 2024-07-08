@@ -1,13 +1,14 @@
-{ pkgs, ... }: 
-{
+{pkgs, ...}: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
       # nix language
       bbenoist.nix
-      # nix-shell suport 
+      # nix-shell suport
       arrterian.nix-env-selector
+      # nix formatting
+      kamadorueda.alejandra
       # python
       ms-python.python
       # C/C++
@@ -32,9 +33,9 @@
       "workbench.iconTheme" = "catppuccin-mocha";
       "catppuccin.accentColor" = "lavender";
       "vsicons.dontShowNewVersionMessage" = true;
-      "explorer.confirmDragAndDrop" = false;
+      "explorer.confirmDragAndDrop" = true;
       "editor.fontLigatures" = true;
-      "editor.minimap.enabled" = false;
+      "editor.minimap.enabled" = true;
       "workbench.startupEditor" = "none";
 
       "editor.formatOnSave" = true;
@@ -45,17 +46,17 @@
       "workbench.editor.limit.enabled" = true;
       "workbench.editor.limit.value" = 10;
       "workbench.editor.limit.perEditorGroup" = true;
-      "workbench.editor.showTabs" = "single";
+      "workbench.editor.showTabs" = "multiple";
       "files.autoSave" = "onWindowChange";
       "explorer.openEditors.visible" = 0;
       "breadcrumbs.enabled" = false;
       "editor.renderControlCharacters" = false;
-      "workbench.activityBar.location" = "hidden";
+      "workbench.activityBar.location" = "default";
       "workbench.statusBar.visible" = false;
-      "editor.scrollbar.verticalScrollbarSize" = 2;
-      "editor.scrollbar.horizontalScrollbarSize" = 2;
-      "editor.scrollbar.vertical" = "hidden";
-      "editor.scrollbar.horizontal" = "hidden";
+      "editor.scrollbar.verticalScrollbarSize" = 4;
+      "editor.scrollbar.horizontalScrollbarSize" = 4;
+      "editor.scrollbar.vertical" = "auto";
+      "editor.scrollbar.horizontal" = "auto";
       "workbench.layoutControl.enabled" = false;
 
       "editor.mouseWheelZoom" = true;

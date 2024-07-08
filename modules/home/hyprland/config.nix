@@ -1,27 +1,27 @@
-{ ... }: 
-{
+{...}: {
   wayland.windowManager.hyprland = {
     settings = {
-      
       # autostart
       exec-once = [
         "systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
+        "dbus-update-activation-environment --systemd --all &"
         "nm-applet &"
-        "wl-clip-persist --clipboard both"
-        "swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f) &"
-        "hyprctl setcursor Nordzy-cursors 22 &"
+        "wl-clip-persist --clipboard both &"
+        "bash -c 'if [ ! -f ~/.config/hypr/wallpaper.png ]; then wall-change ~/.config/hypr/default_wallpaper.png; fi'"
+        "swaybg -m fill -i ~/.config/hypr/wallpaper.png &"
         "poweralertd &"
         "waybar &"
         "swaync &"
-        "wl-paste --watch cliphist store &"
-        "hyprlock"
+        "wl-paste --type text --watch cliphist store &" #Stores only text data
+        "wl-paste --type image --watch cliphist store &" #Stores only image data
+        "ckb-next -b &"
+        "element-desktop --hidden &"
       ];
 
       input = {
-        kb_layout = "us,fr";
-        kb_options ="grp:alt_caps_toggle"; 
+        kb_layout = "es,us";
+        kb_options = "grp:alt_caps_toggle";
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = 0;
@@ -133,15 +133,16 @@
         "$mainMod, Return, exec, kitty"
         "ALT, Return, exec, kitty --title float_kitty"
         "$mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'"
-        "$mainMod, B, exec, hyprctl dispatch exec '[workspace 1 silent] floorp'"
-        "$mainMod, Q, killactive,"
+        "$mainMod, B, exec, floorp"
+        "$mainMod, N, exec, swaync-client -t"
+        "$mainMod SHIFT, N, exec, swaync-client -d"
+        "$mainMod SHIFT, Q, killactive,"
         "$mainMod, F, fullscreen, 0"
         "$mainMod SHIFT, F, fullscreen, 1"
         "$mainMod, Space, togglefloating,"
         "$mainMod, D, exec, fuzzel"
-        "$mainMod SHIFT, D, exec, hyprctl dispatch exec '[workspace 4 silent] discord --enable-features=UseOzonePlatform --ozone-platform=wayland'"
-        "$mainMod SHIFT, S, exec, hyprctl dispatch exec '[workspace 5 silent] SoundWireServer'"
-        "$mainMod, Escape, exec, swaylock"
+        "$mainMod, M, exec, element-desktop"
+        "$mainMod, Escape, exec, loginctl lock-session"
         "$mainMod SHIFT, Escape, exec, shutdown-script"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
@@ -149,17 +150,16 @@
         "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
         "$mainMod, C ,exec, hyprpicker -a"
         "$mainMod, W,exec, wallpaper-picker"
-        "$mainMod SHIFT, W, exec, vm-start"
 
         # screenshot
-        "$mainMod, Print, exec, grimblast --notify --cursor --freeze save area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        "$mainMod, Print, exec, screenshot-menu"
         ",Print, exec, grimblast --notify --cursor --freeze copy area"
 
         # switch focus
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+        "$mainMod, H, movefocus, l"
+        "$mainMod, L, movefocus, r"
+        "$mainMod, K, movefocus, u"
+        "$mainMod, J, movefocus, d"
 
         # switch workspace
         "$mainMod, 1, workspace, 1"
@@ -187,18 +187,18 @@
         "$mainMod CTRL, c, movetoworkspace, empty"
 
         # window control
-        "$mainMod SHIFT, left, movewindow, l"
-        "$mainMod SHIFT, right, movewindow, r"
-        "$mainMod SHIFT, up, movewindow, u"
-        "$mainMod SHIFT, down, movewindow, d"
-        "$mainMod CTRL, left, resizeactive, -80 0"
-        "$mainMod CTRL, right, resizeactive, 80 0"
-        "$mainMod CTRL, up, resizeactive, 0 -80"
-        "$mainMod CTRL, down, resizeactive, 0 80"
-        "$mainMod ALT, left, moveactive,  -80 0"
-        "$mainMod ALT, right, moveactive, 80 0"
-        "$mainMod ALT, up, moveactive, 0 -80"
-        "$mainMod ALT, down, moveactive, 0 80"
+        "$mainMod SHIFT, H, movewindow, l"
+        "$mainMod SHIFT, L, movewindow, r"
+        "$mainMod SHIFT, K, movewindow, u"
+        "$mainMod SHIFT, J, movewindow, d"
+        "$mainMod CTRL, H, resizeactive, -80 0"
+        "$mainMod CTRL, L, resizeactive, 80 0"
+        "$mainMod CTRL, K, resizeactive, 0 -80"
+        "$mainMod CTRL, J, resizeactive, 0 80"
+        "$mainMod ALT, H, moveactive,  -80 0"
+        "$mainMod ALT, L, moveactive, 80 0"
+        "$mainMod ALT, K, moveactive, 0 -80"
+        "$mainMod ALT, J, moveactive, 0 80"
 
         # media and volume controls
         ",XF86AudioRaiseVolume,exec, pamixer -i 2"
@@ -239,8 +239,6 @@
         "float,title:^(float_kitty)$"
         "center,title:^(float_kitty)$"
         "size 950 600,title:^(float_kitty)$"
-        "float,audacious"
-        "workspace 8 silent, audacious"
         # "pin,wofi"
         # "float,wofi"
         # "noborder,wofi"
@@ -270,7 +268,6 @@
         "center,class:^(zenity)$"
         "size 850 500,class:^(zenity)$"
         "float,class:^(pavucontrol)$"
-        "float,class:^(SoundWireServer)$"
         "float,class:^(.sameboy-wrapped)$"
         "float,class:^(file_progress)$"
         "float,class:^(confirm)$"
@@ -290,7 +287,6 @@
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
       ];
-
     };
 
     extraConfig = "

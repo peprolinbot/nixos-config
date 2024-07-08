@@ -1,15 +1,17 @@
-{ pkgs, inputs, username, host, ...}:
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
+  pkgs,
+  inputs,
+  username,
+  host,
+  ...
+}: {
+  imports = [inputs.home-manager.nixosModules.home-manager];
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs username host; };
+    extraSpecialArgs = {inherit inputs username host;};
     users.${username} = {
-      imports = 
-        if (host == "desktop") then 
-          [ ./../home/default.desktop.nix ] 
-        else [ ./../home ];
+      imports = [./../home];
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
       home.stateVersion = "24.05";
@@ -20,8 +22,8 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "${username}";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel" "i2c" "libvirtd" "adbusers"];
     shell = pkgs.zsh;
   };
-  nix.settings.allowed-users = [ "${username}" ];
+  nix.settings.allowed-users = ["${username}"];
 }

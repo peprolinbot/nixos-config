@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   programs.hyprland.enable = true;
   xdg.portal = {
     enable = true;
@@ -14,4 +17,12 @@
   environment.systemPackages = with pkgs; [
     # xwaylandvideobridge
   ];
+
+  # Display manager
+  programs.regreet = {
+    enable = true;
+    settings = {
+      background.path = pkgs.nixos-artwork.wallpapers.simple-dark-gray-bottom.gnomeFilePath;
+    };
+  };
 }

@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = [ pkgs.hyprlock ];
+{pkgs, ...}: {
+  programs.hyprlock.enable = true;
   xdg.configFile."hypr/hyprlock.conf".text = ''
     $red = rgb(f38ba8)
     $yellow = rgb(f9e2af)
@@ -27,9 +26,9 @@
     # BACKGROUND
     background {
       monitor =
-      path = ~/Pictures/wallpapers/others/cat-leaves.png
+      path = ~/.config/hypr/wallpaper.png
       color = $base
-      blur_passes = 0
+      blur_passes = 2
     }
 
     # TIME
@@ -47,9 +46,9 @@
       valign = top
     }
 
-    # DATE 
+    # DATE
     label {
-      monitor = 
+      monitor =
       text = cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"
       color = $text
       font_size = 18
@@ -62,8 +61,8 @@
     # USER AVATAR
 
     image {
-      monitor = 
-      path = ~/Pictures/pp/pp.png
+      monitor =
+      path = ~/.face.png
       size = 125
       border_color = $accent
 
