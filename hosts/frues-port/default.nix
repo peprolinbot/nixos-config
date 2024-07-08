@@ -47,6 +47,9 @@
 
   powerManagement.cpuFreqGovernor = "performance";
 
+  boot.loader.efi.canTouchEfiVariables = false; # For the next option
+  boot.loader.grub.efiInstallAsRemovable = true;
+
   boot = {
     kernelModules = ["acpi_call"];
     extraModulePackages = with config.boot.kernelPackages;

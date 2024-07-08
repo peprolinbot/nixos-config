@@ -1,14 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
     grub = {
       efiSupport = true;
       device = "nodev";
       useOSProber = true;
     };
+    efi.canTouchEfiVariables = lib.mkDefault true;
   };
   boot.kernelPackages = pkgs.linuxPackages_latest;
 }
