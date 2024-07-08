@@ -58,7 +58,7 @@
 | **Color Scheme**            | [Catppuccin][Catppuccin] |
 | **Cursor**                  | [Nordzy-cursors][Nordzy-cursors] |
 | **Icons**                   | [catppuccin-papirus-folders][catppuccin-papirus-folders] |
-| **Lockscreen**              | [Hyprlock][Swaylock-effects] |
+| **Lockscreen**              | [hyprlock][hyprlock] |
 | **Image Viewer**            | [imv][imv] |
 | **Media Player**            | [mpv][mpv] |
 | **Music Player**            | [audacious][spotify_player] |
