@@ -125,101 +125,101 @@
         ];
       };
 
-      bind = [
-        # show keybinds list
-        "$mainMod, F1, exec, show-keybinds"
+      bind =
+        [
+          # show keybinds list
+          "$mainMod, F1, exec, show-keybinds"
 
-        # keybindings
-        "$mainMod, Return, exec, kitty"
-        "ALT, Return, exec, kitty --title float_kitty"
-        "$mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'"
-        "$mainMod, B, exec, floorp"
-        "$mainMod, N, exec, swaync-client -t"
-        "$mainMod SHIFT, N, exec, swaync-client -d"
-        "$mainMod SHIFT, Q, killactive,"
-        "$mainMod, F, fullscreen, 0"
-        "$mainMod SHIFT, F, fullscreen, 1"
-        "$mainMod, Space, togglefloating,"
-        "$mainMod, D, exec, fuzzel"
-        "$mainMod, M, exec, element-desktop"
-        "$mainMod, Escape, exec, loginctl lock-session"
-        "$mainMod SHIFT, Escape, exec, shutdown-script"
-        "$mainMod, P, pseudo,"
-        "$mainMod, J, togglesplit,"
-        "$mainMod, E, exec, nemo"
-        "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
-        "$mainMod, C ,exec, hyprpicker -a"
-        "$mainMod, W,exec, wallpaper-picker"
+          # keybindings
+          "$mainMod, Return, exec, kitty"
+          "ALT, Return, exec, kitty --title float_kitty"
+          "$mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'"
+          "$mainMod, B, exec, floorp"
+          "$mainMod, N, exec, swaync-client -t"
+          "$mainMod SHIFT, N, exec, swaync-client -d"
+          "$mainMod SHIFT, Q, killactive,"
+          "$mainMod, F, fullscreen, 0"
+          "$mainMod SHIFT, F, fullscreen, 1"
+          "$mainMod, Space, togglefloating,"
+          "$mainMod, D, exec, fuzzel"
+          "$mainMod, M, exec, element-desktop"
+          "$mainMod, Escape, exec, loginctl lock-session"
+          "$mainMod SHIFT, Escape, exec, shutdown-script"
+          "$mainMod, P, pseudo,"
+          "$mainMod SHIFT, P, togglesplit,"
+          "$mainMod, E, exec, nemo"
+          "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
+          "$mainMod, C ,exec, hyprpicker -a"
+          "$mainMod, W,exec, wallpaper-picker"
 
-        # screenshot
-        "$mainMod, Print, exec, screenshot-menu"
-        ",Print, exec, grimblast --notify --cursor --freeze copy area"
+          # screenshot
+          "$mainMod, Print, exec, screenshot-menu"
+          ",Print, exec, grimblast --notify --cursor --freeze copy area"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+          builtins.concatLists (
+            builtins.genList (
+              x: let
+                ws = let
+                  c = (x + 1) / 10;
+                in
+                  builtins.toString (x + 1 - (c * 10));
+              in [
+                "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
+                "$mainMod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+              ]
+            )
+            10
+          )
+        )
+        ++ ["$mainMod CTRL, c, movetoworkspace, empty"]
+        ++ (
+          # Window focus, movement and control
+          builtins.concatLists (
+            let
+              keys = ["H" "L" "K" "J"];
+              directions = ["l" "r" "u" "d"];
+              resize = toString 80; # Change this to change how much a window resizes each keypress
+              resize_list = ["-${resize} 0" "${resize} 0" "0 -${resize}" "0 ${resize}"];
+            in
+              builtins.genList (
+                x: let
+                  k = builtins.elemAt keys x;
+                  d = builtins.elemAt directions x;
+                  r = builtins.elemAt resize_list x;
+                in [
+                  "$mainMod, ${k}, movefocus, ${d}"
+                  "$mainMod SHIFT, ${k}, movewindow, ${d}"
+                  "$mainMod CTRL, ${k}, resizeactive, ${r}"
+                  "$mainMod ALT, ${k}, moveactive, ${r}"
+                ]
+              )
+              4
+          )
+        )
+        ++ [
+          # media and volume controls
+          ",XF86AudioRaiseVolume,exec, pamixer -i 2"
+          ",XF86AudioLowerVolume,exec, pamixer -d 2"
+          ",XF86AudioMute,exec, pamixer -t"
+          ",XF86AudioPlay,exec, playerctl play-pause"
+          ",XF86AudioNext,exec, playerctl next"
+          ",XF86AudioPrev,exec, playerctl previous"
+          ",XF86AudioStop, exec, playerctl stop"
+          "$mainMod, mouse_down, workspace, e-1"
+          "$mainMod, mouse_up, workspace, e+1"
 
-        # switch focus
-        "$mainMod, H, movefocus, l"
-        "$mainMod, L, movefocus, r"
-        "$mainMod, K, movefocus, u"
-        "$mainMod, J, movefocus, d"
+          # laptop brigthness
+          ",XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+          ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+          "$mainMod, XF86MonBrightnessUp, exec, brightnessctl set 100%+"
+          "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 100%-"
 
-        # switch workspace
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-
-        # same as above, but switch to the workspace
-        "$mainMod SHIFT, 1, movetoworkspacesilent, 1" # movetoworkspacesilent
-        "$mainMod SHIFT, 2, movetoworkspacesilent, 2"
-        "$mainMod SHIFT, 3, movetoworkspacesilent, 3"
-        "$mainMod SHIFT, 4, movetoworkspacesilent, 4"
-        "$mainMod SHIFT, 5, movetoworkspacesilent, 5"
-        "$mainMod SHIFT, 6, movetoworkspacesilent, 6"
-        "$mainMod SHIFT, 7, movetoworkspacesilent, 7"
-        "$mainMod SHIFT, 8, movetoworkspacesilent, 8"
-        "$mainMod SHIFT, 9, movetoworkspacesilent, 9"
-        "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
-        "$mainMod CTRL, c, movetoworkspace, empty"
-
-        # window control
-        "$mainMod SHIFT, H, movewindow, l"
-        "$mainMod SHIFT, L, movewindow, r"
-        "$mainMod SHIFT, K, movewindow, u"
-        "$mainMod SHIFT, J, movewindow, d"
-        "$mainMod CTRL, H, resizeactive, -80 0"
-        "$mainMod CTRL, L, resizeactive, 80 0"
-        "$mainMod CTRL, K, resizeactive, 0 -80"
-        "$mainMod CTRL, J, resizeactive, 0 80"
-        "$mainMod ALT, H, moveactive,  -80 0"
-        "$mainMod ALT, L, moveactive, 80 0"
-        "$mainMod ALT, K, moveactive, 0 -80"
-        "$mainMod ALT, J, moveactive, 0 80"
-
-        # media and volume controls
-        ",XF86AudioRaiseVolume,exec, pamixer -i 2"
-        ",XF86AudioLowerVolume,exec, pamixer -d 2"
-        ",XF86AudioMute,exec, pamixer -t"
-        ",XF86AudioPlay,exec, playerctl play-pause"
-        ",XF86AudioNext,exec, playerctl next"
-        ",XF86AudioPrev,exec, playerctl previous"
-        ",XF86AudioStop, exec, playerctl stop"
-        "$mainMod, mouse_down, workspace, e-1"
-        "$mainMod, mouse_up, workspace, e+1"
-
-        # laptop brigthness
-        ",XF86MonBrightnessUp, exec, brightnessctl set 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-        "$mainMod, XF86MonBrightnessUp, exec, brightnessctl set 100%+"
-        "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 100%-"
-
-        # clipboard manager
-        "$mainMod, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
-      ];
+          # clipboard manager
+          "$mainMod, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
+        ];
 
       # mouse binding
       bindm = [
