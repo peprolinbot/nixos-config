@@ -17,6 +17,7 @@
     ++ [(import ./hyprland)] # window manager
     ++ [(import ./kitty.nix)] # terminal
     ++ [(import ./swaync/swaync.nix)] # notification deamon
+    ++ [(import ./nextcloud.nix)] # nextcloud client
     ++ [(import ./nvim.nix)] # neovim editor
     ++ [(import ./packages.nix)] # other packages
     ++ [(import ./retroarch.nix)]
