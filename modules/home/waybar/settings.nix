@@ -9,6 +9,7 @@
     opacity = ".85";
     cursor = "Numix-Cursor";
   },
+  host,
   ...
 }: {
   programs.waybar.settings.mainBar = {
@@ -28,17 +29,26 @@
     modules-center = [
       "hyprland/workspaces"
     ];
-    modules-right = [
-      "tray"
-      "cpu"
-      "memory"
-      "disk"
-      "pulseaudio"
-      "battery"
-      "network"
-      "custom/notification"
-      "clock"
-    ];
+    modules-right =
+      [
+        "tray"
+      ]
+      ++ (
+        if (host == "frues-pc") # Only one with a big-enough screen
+        then [
+          "cpu"
+          "memory"
+          "disk"
+        ]
+        else []
+      )
+      ++ [
+        "pulseaudio"
+        "battery"
+        "network"
+        "custom/notification"
+        "clock"
+      ];
     clock = {
       format = " {:%H:%M}";
       tooltip = true;
@@ -115,7 +125,7 @@
     };
     pulseaudio = {
       format = "{icon} {volume}%";
-      format-muted = "󰖁 ";
+      format-muted = " ";
       format-icons = {
         default = [" "];
       };
