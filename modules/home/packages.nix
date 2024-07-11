@@ -23,6 +23,7 @@
     nitch # systhem fetch util
     nix-prefetch-github
     ripgrep # grep replacement
+    simple-scan
     swappy
     tdf # cli pdf viewer
     todo # cli todo list
