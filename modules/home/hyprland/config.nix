@@ -142,6 +142,7 @@
           "$mainMod SHIFT, F, fullscreen, 1"
           "$mainMod, Space, togglefloating,"
           "$mainMod, D, exec, fuzzel"
+          "$mainMod SHIFT, E, exec, bemoji -t"
           "$mainMod, M, exec, element-desktop"
           "$mainMod, Escape, exec, loginctl lock-session"
           "$mainMod SHIFT, Escape, exec, shutdown-script"

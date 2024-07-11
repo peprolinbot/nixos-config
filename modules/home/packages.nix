@@ -4,6 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
+    bemoji # emoji picker
     bitwise # cli tool for bit / hex manipulation
     bitwarden-cli
     evince # gnome pdf viewer
@@ -34,6 +35,7 @@
     zenity
     winetricks
     wineWowPackages.wayland
+    wtype
 
     # C / C++
     gcc
