@@ -75,6 +75,17 @@
           inherit self inputs username;
         };
       };
+      fruesos-live = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [
+          (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          (import ./hosts/fruesos-live)
+        ];
+        specialArgs = {
+          host = "fruesos-live";
+          inherit self inputs username;
+        };
+      };
     };
   };
 }
