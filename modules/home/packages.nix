@@ -11,7 +11,6 @@
     element-desktop # Matrix client
     fd # find replacement
     file # Show file information
-    flameshot # Screenshot tool
     fzf # fuzzy finder
     gimp
     gtrash # rm replacement, put deleted files in system trash
