@@ -22,6 +22,7 @@
     jq
     nitch # systhem fetch util
     nix-prefetch-github
+    kdePackages.okular # KDE's pdf viewer/editor (supports digital signing)
     ripgrep # grep replacement
     simple-scan
     swappy
@@ -29,6 +30,7 @@
     todo # cli todo list
     toipe # typing test in the terminal
     vlc
+    xournalpp # For notes and pdf editing
     yazi # terminal file manager
     yt-dlp
     zenity
