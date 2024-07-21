@@ -13,4 +13,5 @@
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [];
   programs.adb.enable = true;
+  programs.kdeconnect.enable = true;
 }

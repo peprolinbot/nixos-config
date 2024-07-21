@@ -15,6 +15,7 @@
     ++ [(import ./git.nix)] # version control
     ++ [(import ./gtk.nix)] # gtk theme
     ++ [(import ./hyprland)] # window manager
+    ++ [(import ./kdeconnect.nix)]
     ++ [(import ./kitty.nix)] # terminal
     ++ [(import ./swaync/swaync.nix)] # notification deamon
     ++ [(import ./nextcloud.nix)] # nextcloud client
