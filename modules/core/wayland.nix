@@ -25,4 +25,6 @@
       background.path = pkgs.nixos-artwork.wallpapers.simple-dark-gray-bottom.gnomeFilePath;
     };
   };
+
+  environment.sessionVariables.XKB_DEFAULT_LAYOUT = "es";
 }

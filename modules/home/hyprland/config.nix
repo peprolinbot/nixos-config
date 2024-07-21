@@ -3,9 +3,6 @@
     settings = {
       # autostart
       exec-once = [
-        "systemctl --user import-environment &"
-        "hash dbus-update-activation-environment 2>/dev/null &"
-        "dbus-update-activation-environment --systemd --all &"
         "nm-applet &"
         "wl-clip-persist --clipboard both &"
         "bash -c 'if [ ! -f ~/.config/hypr/wallpaper.png ]; then wall-change ~/.config/hypr/default_wallpaper.png; fi'"

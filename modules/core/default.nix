@@ -20,6 +20,5 @@
     ++ [(import ./system.nix)]
     ++ [(import ./user.nix)]
     ++ [(import ./wayland.nix)]
-    ++ [(import ./variables.nix)]
     ++ [(import ./virtualisation.nix)];
 }
