@@ -29,6 +29,7 @@
     tdf # cli pdf viewer
     todo # cli todo list
     toipe # typing test in the terminal
+    transmission_4-gtk # torrent client
     vlc
     xournalpp # For notes and pdf editing
     yazi # terminal file manager

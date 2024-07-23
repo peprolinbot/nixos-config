@@ -243,7 +243,6 @@
         "tile, neovide"
         "idleinhibit focus,mpv"
         "float,udiskie"
-        "float,title:^(Transmission)$"
         "float,title:^(Volume Control)$"
         "float,title:^(Firefox — Sharing Indicator)$"
         "move 0 0,title:^(Firefox — Sharing Indicator)$"
