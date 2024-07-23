@@ -11,6 +11,7 @@
     element-desktop # Matrix client
     fd # find replacement
     file # Show file information
+    file-roller # Archive manager
     fzf # fuzzy finder
     gimp
     gtrash # rm replacement, put deleted files in system trash
