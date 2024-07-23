@@ -3,6 +3,12 @@
   pkgs,
   ...
 }: {
+  xdg.mimeApps.defaultApplications = {
+    "inode/directory" = ["nemo.desktop"];
+    "application/pdf" = ["okularApplication_pdf.desktop" "org.gnome.Evince.desktop"];
+    "text/plain" = ["org.gnome.TextEditor.desktop"];
+  };
+
   home.packages = with pkgs; [
     bemoji # emoji picker
     bitwise # cli tool for bit / hex manipulation
