@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   qt.enable = true;
   qt.platformTheme.name = "qtct";
   qt.style.name = "kvantum";
@@ -16,4 +20,18 @@
     accent = "Lavender";
     variant = "Mocha";
   })}/share/Kvantum/Catppuccin-Mocha-Lavender";
+
+  xdg.configFile."qt5ct/qt5ct.conf".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
+    Appearance = {
+      style = "kvantum-dark";
+      icon_theme = "Papirus-Dark";
+    };
+
+    Fonts = {
+      general = "\"JetBrainsMono Nerd Font,12,-1,5,50,0,0,0,0,0,Regular\"";
+      fixed = "\"JetBrainsMono Nerd Font,12,-1,5,50,0,0,0,0,0,Regular\"";
+    };
+  };
+
+  xdg.configFile."qt6ct/qt6ct.conf".source = config.xdg.configFile."qt5ct/qt5ct.conf".source;
 }
