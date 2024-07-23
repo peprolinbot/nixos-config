@@ -5,6 +5,8 @@
 
   home.packages = with pkgs; [
     libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5.qtwayland
+    qt6.qtwayland
   ];
 
   xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
