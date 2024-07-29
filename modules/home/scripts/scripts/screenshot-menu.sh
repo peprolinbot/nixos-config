@@ -21,7 +21,7 @@ option_time_5="60s"
 #### Initial menu to decide wether a timer is wanted
 
 want_timer_cmd() {
-  echo -e "$option_1\n$option_2" | fuzzel --dmenu -p 'Screenshot'
+  echo -e "$option_1\n$option_2" | fuzzel --dmenu -p 'Screenshot: '
 }
 
 ####
@@ -30,7 +30,7 @@ want_timer_cmd() {
 #### Choose Timer seconds
 
 timer_cmd() {
-  echo -e "$option_time_1\n$option_time_2\n$option_time_3\n$option_time_4\n$option_time_5" | fuzzel --dmenu -p 'Choose timer:'
+  echo -e "$option_time_1\n$option_time_2\n$option_time_3\n$option_time_4\n$option_time_5" | fuzzel --dmenu -p 'Choose timer: '
 }
 
 timer_menu() {
@@ -59,7 +59,7 @@ timer_menu() {
 #### Chose Screenshot Type
 
 type_screenshot_cmd() {
-  echo -e "$option_capture_1\n$option_capture_2\n$option_capture_3" | fuzzel --dmenu -p 'Type Of Screenshot:'
+  echo -e "$option_capture_1\n$option_capture_2\n$option_capture_3" | fuzzel --dmenu -p 'Type of screenshot: '
 }
 
 type_screenshot_menu() {
