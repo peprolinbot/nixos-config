@@ -100,7 +100,7 @@
         "actions": [
           {
             "label": "  Lock",
-            "command": "swaylock"
+            "command": "loginctl lock-session"
           },
           {
             "label": "  Reboot",
