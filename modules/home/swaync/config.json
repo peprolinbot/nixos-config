@@ -58,39 +58,31 @@
           }
         ]
       },
-      "menu#screenshot": {
+      "menu#screenshotnrecord": {
         "label": "  ",
         "position": "left",
         "actions": [
           {
-            "label": "󰹑  Whole screen",
-            "command": "grimblast --notify --cursor --freeze copy output"
+            "label": "󰹑  Screenshot",
+            "command": "bash -c 'swaync-client -t; screenshot-menu'"
           },
           {
-            "label": "󰩭  Window / Region",
-            "command": "grimblast --notify --cursor --freeze copy area"
+            "label": "󰕧  Record screen",
+            "command": "bash -c 'swaync-client -t; kooha'"
           }
         ]
       },
-      "menu#record": {
-        "label": " 󰕧 ",
+      "menu#wallpaper": {
+        "label": "  ",
         "position": "left",
         "actions": [
           {
-            "label": "  Record screen",
-            "command": "record screen & ; swaync-client -t"
+            "label": "Set Bing POtD as Wallpaper",
+            "command": "setbg-bpotd"
           },
           {
-            "label": "  Record selection",
-            "command": "record area & ; swaync-client -t"
-          },
-          {
-            "label": "  Record GIF",
-            "command": "record gif & ; swaync-client -t"
-          },
-          {
-            "label": "󰻃  Stop",
-            "command": "record stop"
+            "label": "Set NASA APOtD as Wallpaper",
+            "command": "setbg-apotd"
           }
         ]
       },
