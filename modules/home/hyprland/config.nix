@@ -172,7 +172,10 @@
             10
           )
         )
-        ++ ["$mainMod CTRL, c, movetoworkspace, empty"]
+        ++ [
+          "$mainMod CTRL, c, workspace, empty"
+          "$mainMod SHIFT, c, movetoworkspace, empty"
+        ]
         ++ (
           # Window focus, movement and control
           builtins.concatLists (
