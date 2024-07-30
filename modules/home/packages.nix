@@ -42,6 +42,7 @@
     yazi # terminal file manager
     yt-dlp
     zenity
+    wireguard-tools
     winetricks
     wineWowPackages.wayland
     wtype
