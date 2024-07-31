@@ -34,6 +34,7 @@
     simple-scan
     swappy
     tdf # cli pdf viewer
+    thunderbird
     todo # cli todo list
     toipe # typing test in the terminal
     transmission_4-gtk # torrent client
