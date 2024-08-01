@@ -3,7 +3,10 @@
     enable = true;
     config = {
       pager = "less -FR";
-      theme = "Dracula";
+      theme = "Catpuccin Mocha";
+    };
+    themes = {
+      file = "${inputs.catppuccin-bat}/themes/Catppuccin Mocha.tmTheme";
     };
   };
 }
