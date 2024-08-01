@@ -6,7 +6,10 @@
       theme = "Catpuccin Mocha";
     };
     themes = {
-      file = "${inputs.catppuccin-bat}/themes/Catppuccin Mocha.tmTheme";
+      catppuccin-mocha = {
+        src = inputs.catppuccin-bat;
+        file = "/themes/Catppuccin Mocha.tmTheme";
+      };
     };
   };
 }
