@@ -18,4 +18,12 @@
     rocmPackages.clr.icd
     amdvlk
   ];
+
+  # It is an open-source implementation of Nvidia’s Moonlight game streaming application
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 }
