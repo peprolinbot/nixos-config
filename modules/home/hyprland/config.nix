@@ -1,8 +1,9 @@
-{...}: {
+{pkgs, ...}: {
   wayland.windowManager.hyprland = {
     settings = {
       # autostart
       exec-once = [
+        "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent &"
         "nm-applet &"
         "wl-clip-persist --clipboard both &"
         "bash -c 'if [ ! -f ~/.config/hypr/wallpaper.png ]; then wall-change ~/.config/hypr/default_wallpaper.png; fi'"
