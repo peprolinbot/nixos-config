@@ -32,5 +32,8 @@
     cemu
     dolphin-emu
     ryujinx
+
+    ## Others
+    moonlight-qt
   ];
 }
