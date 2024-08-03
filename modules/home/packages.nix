@@ -44,6 +44,7 @@
       yazi # terminal file manager
       yt-dlp
       gnome.zenity
+      wdisplays
       wireguard-tools
       winetricks
       wineWowPackages.wayland
