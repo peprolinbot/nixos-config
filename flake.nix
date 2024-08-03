@@ -61,7 +61,7 @@
         modules = [(import ./hosts/frues-port)];
         specialArgs = {
           host = "frues-port";
-          inherit self inputs username;
+          inherit self inputs username pkgs-unstable;
         };
       };
       frues-vm = nixpkgs.lib.nixosSystem {
@@ -69,7 +69,7 @@
         modules = [(import ./hosts/frues-vm)];
         specialArgs = {
           host = "frues-vm";
-          inherit self inputs username;
+          inherit self inputs username pkgs-unstable;
         };
       };
       fruesos-live = nixpkgs.lib.nixosSystem {
@@ -80,7 +80,7 @@
         ];
         specialArgs = {
           host = "fruesos-live";
-          inherit self inputs username;
+          inherit self inputs username pkgs-unstable;
         };
       };
     };
