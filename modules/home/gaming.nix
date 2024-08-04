@@ -11,6 +11,10 @@
     # winetricks
     # inputs.nix-gaming.packages.${pkgs.system}.wine-ge
 
+    # Launchers (Steam isn't here)
+    lutris
+    heroic
+
     ## Minecraft
     inputs.fjordlauncher.packages.${pkgs.system}.fjordlauncher
 
