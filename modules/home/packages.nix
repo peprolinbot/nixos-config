@@ -14,6 +14,8 @@
       bemoji # emoji picker
       bitwise # cli tool for bit / hex manipulation
       bitwarden-cli
+      distrobox
+      boxbuddy
       evince # gnome pdf viewer
       element-desktop # Matrix client
       fd # find replacement
