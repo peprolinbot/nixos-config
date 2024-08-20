@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  username,
   ...
 }: {
   programs.hyprland.enable = true;
@@ -29,6 +30,9 @@
     };
     cageArgs = ["-s" "-m" "last"]; # Only show on the last monitor
   };
-
+  services.greetd.settings.initial_session = {
+    command = "hyprland";
+    user = "${username}";
+  };
   environment.sessionVariables.XKB_DEFAULT_LAYOUT = "es";
 }
