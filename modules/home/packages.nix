@@ -26,6 +26,7 @@
       gtrash # rm replacement, put deleted files in system trash
       imagemagick
       inkscape
+      kleopatra # Gpg GUI
       lazygit
       libreoffice
       cinnamon.nemo-with-extensions # file manager
