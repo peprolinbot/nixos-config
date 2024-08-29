@@ -202,14 +202,6 @@
           )
         )
         ++ [
-          # media and volume controls
-          ",XF86AudioRaiseVolume,exec, pamixer -i 2"
-          ",XF86AudioLowerVolume,exec, pamixer -d 2"
-          ",XF86AudioMute,exec, pamixer -t"
-          ",XF86AudioPlay,exec, playerctl play-pause"
-          ",XF86AudioNext,exec, playerctl next"
-          ",XF86AudioPrev,exec, playerctl previous"
-          ",XF86AudioStop, exec, playerctl stop"
           "$mainMod, mouse_down, workspace, e-1"
           "$mainMod, mouse_up, workspace, e+1"
 
@@ -222,6 +214,18 @@
           # clipboard manager
           "$mainMod, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
         ];
+
+      # Bindings that work when locked
+      bindl = [
+        # media and volume controls
+        ",XF86AudioRaiseVolume,exec, pamixer -i 2"
+        ",XF86AudioLowerVolume,exec, pamixer -d 2"
+        ",XF86AudioMute,exec, pamixer -t"
+        ",XF86AudioPlay,exec, playerctl play-pause"
+        ",XF86AudioNext,exec, playerctl next"
+        ",XF86AudioPrev,exec, playerctl previous"
+        ",XF86AudioStop, exec, playerctl stop"
+      ];
 
       # mouse binding
       bindm = [
