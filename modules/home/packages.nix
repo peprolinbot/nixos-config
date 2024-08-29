@@ -36,6 +36,7 @@
       kdePackages.okular # KDE's pdf viewer/editor (supports digital signing)
       ripgrep # grep replacement
       simple-scan
+      orca-slicer
       swappy
       # tdf # cli pdf viewer
       thunderbird
