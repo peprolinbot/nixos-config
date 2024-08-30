@@ -39,5 +39,6 @@
 
     ## Others
     moonlight-qt
+    ukmm # BOTW mod manager
   ];
 }
