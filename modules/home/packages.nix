@@ -39,6 +39,7 @@
       orca-slicer
       swappy
       # tdf # cli pdf viewer
+      speedcrunch
       thunderbird
       todo # cli todo list
       toipe # typing test in the terminal
