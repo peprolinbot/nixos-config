@@ -292,14 +292,14 @@
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
       ];
+
+      monitor = [
+        ",preferred,auto,1"
+      ];
+
+      xwayland = {
+        force_zero_scaling = true;
+      };
     };
-
-    extraConfig = "
-      monitor=,preferred,auto,1
-
-      xwayland {
-        force_zero_scaling = true
-      }
-    ";
   };
 }
