@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  username,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./../../modules/core
@@ -26,4 +30,9 @@
     capSysAdmin = true;
     openFirewall = true;
   };
+
+  home-manager.users.${username}.wayland.windowManager.hyprland.settings.monitor = [
+    "HDMI-A-1, 1920x1080@60, 0x0, 1"
+    "DP-1, 2560x1440@165, 1920x0, 1.333333"
+  ];
 }
