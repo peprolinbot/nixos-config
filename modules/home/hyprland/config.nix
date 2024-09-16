@@ -293,18 +293,18 @@
         "noblur,class:^(xwaylandvideobridge)$"
       ];
 
+      monitor = [
+        ",preferred,auto,1"
+      ];
+
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       gestures = {
         workspace_swipe = true;
         workspace_swipe_direction_lock = false;
       };
     };
-
-    extraConfig = "
-      monitor=,preferred,auto,1
-
-      xwayland {
-        force_zero_scaling = true
-      }
-    ";
   };
 }
