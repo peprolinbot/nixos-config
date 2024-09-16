@@ -292,6 +292,11 @@
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
       ];
+
+      gestures = {
+        workspace_swipe = true;
+        workspace_swipe_direction_lock = false;
+      };
     };
 
     extraConfig = "
