@@ -26,7 +26,7 @@
           on-resume = ckb-next --profile "Personal"   # turn on keyboard backlight.
         }
       ''
-      else null
+      else ""
     )
     + ''
       listener {
