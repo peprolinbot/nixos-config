@@ -1,5 +1,7 @@
-{...}: {
+{username, ...}: {
   nix.settings = {
+    trusted-users = ["${username}"];
+
     trusted-substituters = [
       "https://cache.garnix.io"
       "https://hyprland.cachix.org"
