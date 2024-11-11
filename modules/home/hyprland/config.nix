@@ -5,7 +5,7 @@
       exec-once = [
         "${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent &"
         "nm-applet &"
-        "wl-clip-persist --clipboard both &"
+        "wl-clip-persist --clipboard regular &"
         "bash -c 'if [ ! -f ~/.config/hypr/wallpaper.png ]; then wall-change ~/.config/hypr/default_wallpaper.png; fi'"
         "swaybg -m fill -i ~/.config/hypr/wallpaper.png &"
         "poweralertd &"
