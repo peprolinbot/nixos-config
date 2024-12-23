@@ -16,6 +16,7 @@
     fd # find replacement
     file # Show file information
     file-roller # Archive manager
+    freetube # YouTube client
     fzf # fuzzy finder
     gimp
     gtrash # rm replacement, put deleted files in system trash
