@@ -17,8 +17,8 @@
     General.theme = "Catppuccin-Mocha-Lavender";
   };
   xdg.configFile."Kvantum/Catppuccin-Mocha-Lavender".source = "${(pkgs.catppuccin-kvantum.override {
-    accent = "Lavender";
-    variant = "Mocha";
+    accent = "lavender";
+    variant = "mocha";
   })}/share/Kvantum/Catppuccin-Mocha-Lavender";
 
   xdg.configFile."qt5ct/qt5ct.conf".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
