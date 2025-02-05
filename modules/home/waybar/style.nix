@@ -60,7 +60,7 @@
     }
 
     #tray, #pulseaudio, #network, #cpu, #memory, #disk,
-    #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward, #battery, #custom-notification {
+    #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward, #battery, #idle_inhibitor, #custom-notification {
         background: #${custom.palette.tertiary_background_hex};
         font-weight: bold;
         margin: 5px 0px;
@@ -102,6 +102,13 @@
     }
 
     #battery {
+        color: #${custom.tertiary_accent};
+        border-radius: 0;
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    #idle_inhibitor {
         color: #${custom.tertiary_accent};
         border-radius: 0;
         padding-left: 9px;

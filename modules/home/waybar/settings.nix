@@ -45,6 +45,7 @@
       ++ [
         "pulseaudio"
         "battery"
+        "idle_inhibitor"
         "network"
         "custom/notification"
         "clock"
@@ -147,6 +148,16 @@
       tooltip = true;
       tooltip-format = "{time}";
     };
+
+    idle_inhibitor = {
+      format = "{icon}";
+      format-icons = {
+        activated = " ";
+        deactivated = " ";
+      };
+      timeout = 30;
+    };
+
     "custom/launcher" = {
       format = "";
       on-click = "pkill fuzzel || fuzzel";
