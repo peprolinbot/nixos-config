@@ -1,12 +1,10 @@
-#!/usr/bin/env bash
-
 [ $# -eq 0 ] && {  # $# is number of args
-    echo "$(basename $0): missing command" >&2
+    echo "$(basename "$0"): missing command" >&2
     exit 1
 }
 prog="$(which "$1")"  # see below
 [ -z "$prog" ] && {
-    echo "$(basename $0): unknown command: $1" >&2
+    echo "$(basename "$0"): unknown command: $1" >&2
     exit 1
 }
 shift  # remove $1, now $prog, from args

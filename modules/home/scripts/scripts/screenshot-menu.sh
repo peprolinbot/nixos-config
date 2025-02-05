@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 #### Options
 
 option_1="󰹑 Capture"
@@ -37,19 +35,14 @@ timer_menu() {
   selected_timer="$(timer_cmd)"
   if [[ "$selected_timer" == "$option_time_1" ]]; then
     countdown=5
-    ${1}
   elif [[ "$selected_timer" == "$option_time_2" ]]; then
     countdown=10
-    ${1}
   elif [[ "$selected_timer" == "$option_time_3" ]]; then
     countdown=20
-    ${1}
   elif [[ "$selected_timer" == "$option_time_4" ]]; then
     countdown=30
-    ${1}
   elif [[ "$selected_timer" == "$option_time_5" ]]; then
     countdown=60
-    ${1}
   fi
 }
 
@@ -66,13 +59,10 @@ type_screenshot_menu() {
   selected_type_screenshot="$(type_screenshot_cmd)"
   if [[ "$selected_type_screenshot" == "$option_capture_1" ]]; then
     option_type_screenshot=screen
-    ${1}
   elif [[ "$selected_type_screenshot" == "$option_capture_2" ]]; then
     option_type_screenshot=output
-    ${1}
   elif [[ "$selected_type_screenshot" == "$option_capture_3" ]]; then
     option_type_screenshot=area
-    ${1}
   fi
 }
 

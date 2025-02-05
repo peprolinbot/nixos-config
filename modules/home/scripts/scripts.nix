@@ -1,45 +1,70 @@
-{pkgs, ...}: let
-  ddcmonitorctl = pkgs.writeShellScriptBin "ddcmonitorctl" (builtins.readFile ./scripts/ddcmonitorctl.sh);
+{pkgs, ...}: {
+  home.packages =
+    [
+      (pkgs.writeShellApplication {
+        name = "ddcmonitorctl";
+        runtimeInputs = with pkgs; [ddcutil];
+        text = builtins.readFile ./scripts/ddcmonitorctl.sh;
+      })
+    ]
+    ++ (let
+      wall-change = pkgs.writeShellApplication {
+        name = "wall-change";
+        runtimeInputs = with pkgs; [swaybg imagemagick];
+        text = builtins.readFile ./scripts/wall-change.sh;
+      };
+      setbg-apotd = pkgs.writeShellApplication {
+        name = "setbg-apotd";
+        runtimeInputs = [pkgs.curl pkgs.gnugrep pkgs.gnused wall-change];
+        text = builtins.readFile ./scripts/setbg-apotd.sh;
+      };
+      setbg-bpotd = pkgs.writeShellApplication {
+        name = "setbg-bpotd";
+        runtimeInputs = with pkgs; [pkgs.curl pkgs.jq wall-change];
+        text = builtins.readFile ./scripts/setbg-bpotd.sh;
+      };
+      wallpaper-picker = pkgs.writeShellApplication {
+        name = "wallpaper-picker";
+        runtimeInputs = [pkgs.fuzzel setbg-apotd setbg-bpotd wall-change];
+        text = builtins.readFile ./scripts/wallpaper-picker.sh;
+      };
+    in [
+      wall-change
+      setbg-apotd
+      setbg-bpotd
+      wallpaper-picker
+    ])
+    ++ [
+      (pkgs.writeShellApplication {
+        name = "runbg";
+        text = builtins.readFile ./scripts/runbg.sh;
+      })
 
-  setbg-apotd = pkgs.writeShellScriptBin "setbg-apotd" (builtins.readFile ./scripts/setbg-apotd.sh);
-  setbg-bpotd = pkgs.writeShellScriptBin "setbg-bpotd" (builtins.readFile ./scripts/setbg-bpotd.sh);
-  wall-change = pkgs.writeShellScriptBin "wall-change" (builtins.readFile ./scripts/wall-change.sh);
-  wallpaper-picker = pkgs.writeShellScriptBin "wallpaper-picker" (builtins.readFile ./scripts/wallpaper-picker.sh);
+      (pkgs.writeShellApplication {
+        name = "toggle_blur";
+        text = builtins.readFile ./scripts/toggle_blur.sh;
+      })
+      (pkgs.writeShellApplication {
+        name = "toggle_oppacity";
+        text = builtins.readFile ./scripts/toggle_oppacity.sh;
+      })
 
-  runbg = pkgs.writeShellScriptBin "runbg" (builtins.readFile ./scripts/runbg.sh);
+      (pkgs.writeShellApplication {
+        name = "shutdown-script";
+        runtimeInputs = with pkgs; [fuzzel];
+        text = builtins.readFile ./scripts/shutdown-script.sh;
+      })
 
-  toggle_blur = pkgs.writeScriptBin "toggle_blur" (builtins.readFile ./scripts/toggle_blur.sh);
-  toggle_oppacity = pkgs.writeScriptBin "toggle_oppacity" (builtins.readFile ./scripts/toggle_oppacity.sh);
+      (pkgs.writeShellApplication {
+        name = "show-keybinds";
+        runtimeInputs = with pkgs; [fuzzel gnugrep];
+        text = builtins.readFile ./scripts/show-keybinds.sh;
+      })
 
-  compress = pkgs.writeScriptBin "compress" (builtins.readFile ./scripts/compress.sh);
-  extract = pkgs.writeScriptBin "extract" (builtins.readFile ./scripts/extract.sh);
-
-  shutdown-script = pkgs.writeScriptBin "shutdown-script" (builtins.readFile ./scripts/shutdown-script.sh);
-
-  show-keybinds = pkgs.writeScriptBin "show-keybinds" (builtins.readFile ./scripts/keybinds.sh);
-
-  screenshot-menu = pkgs.writeScriptBin "screenshot-menu" (builtins.readFile ./scripts/screenshot-menu.sh);
-in {
-  home.packages = with pkgs; [
-    ddcmonitorctl
-
-    setbg-apotd
-    setbg-bpotd
-    wall-change
-    wallpaper-picker
-
-    runbg
-
-    toggle_blur
-    toggle_oppacity
-
-    compress
-    extract
-
-    shutdown-script
-
-    show-keybinds
-
-    screenshot-menu
-  ];
+      (pkgs.writeShellApplication {
+        name = "screenshot-menu";
+        runtimeInputs = with pkgs; [fuzzel grimblast swappy];
+        text = builtins.readFile ./scripts/screenshot-menu.sh;
+      })
+    ];
 }
