@@ -14,12 +14,12 @@
   ];
 
   xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
-    General.theme = "Catppuccin-Mocha-Lavender";
+    General.theme = "catppuccin-mocha-lavender";
   };
-  xdg.configFile."Kvantum/Catppuccin-Mocha-Lavender".source = "${(pkgs.catppuccin-kvantum.override {
-    accent = "lavender";
+  xdg.configFile."Kvantum/catppuccin-mocha-lavender".source = "${(pkgs.catppuccin-kvantum.override {
     variant = "mocha";
-  })}/share/Kvantum/Catppuccin-Mocha-Lavender";
+    accent = "lavender";
+  })}/share/Kvantum/catppuccin-mocha-lavender";
 
   xdg.configFile."qt5ct/qt5ct.conf".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
     Appearance = {
