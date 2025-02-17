@@ -18,12 +18,12 @@
     ++ [(import ./hyprland)] # window manager
     ++ [(import ./kdeconnect.nix)]
     ++ [(import ./kitty.nix)] # terminal
-    ++ [(import ./swaync/swaync.nix)] # notification deamon
+    ++ [(import ./swaync)] # notification deamon
     ++ [(import ./nextcloud.nix)] # nextcloud client
     ++ [(import ./nvim.nix)] # neovim editor
     ++ [(import ./packages.nix)] # other packages
     ++ [(import ./retroarch.nix)]
-    ++ [(import ./scripts/scripts.nix)] # personal scripts
+    ++ [(import ./scripts)] # personal scripts
     ++ [(import ./spotify.nix)]
     ++ [(import ./starship.nix)] # shell prompt
     ++ [(import ./qt.nix)]
