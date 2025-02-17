@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  home.packages = [pkgs.cmake]; # The CMake extension needs it
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
@@ -15,6 +16,8 @@
       ms-vscode.cpptools
       # OCaml
       ocamllabs.ocaml-platform
+      # CMake
+      ms-vscode.cmake-tools
 
       # Color theme
       catppuccin.catppuccin-vsc
@@ -79,7 +82,7 @@
       "C_Cpp.default.browse.path" = [
         ''''${workspaceFolder}/**''
       ];
-      "C_Cpp.default.cStandard" = "gnu11";
+      "C_Cpp.default.cStandard" = "gnu99";
       "C_Cpp.inlayHints.parameterNames.hideLeadingUnderscores" = false;
       "C_Cpp.intelliSenseUpdateDelay" = 500;
       "C_Cpp.workspaceParsingPriority" = "medium";
