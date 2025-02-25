@@ -6,11 +6,11 @@
 }: {
   imports =
     [(import ./bat.nix)] # better cat command
+    ++ [(import ./browsers)] # browser configurations
     ++ [(import ./btop.nix)] # resouces monitor
     ++ [(import ./cava.nix)] # audio visualizer
     ++ [(import ./discord.nix)] # discord with catppuccin theme
     ++ [(import ./gpg.nix)] # GnuPG and its agent (gpg-agent)
-    ++ [(import ./floorp/floorp.nix)] # firefox based browser
     ++ [(import ./fuzzel.nix)] # launcher
     ++ [(import ./gaming.nix)] # packages related to gaming
     ++ [(import ./git.nix)] # version control
