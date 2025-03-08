@@ -153,7 +153,7 @@
 
           # screenshot
           "$mainMod, Print, exec, screenshot-menu"
-          ",Print, exec, grimblast --notify --cursor --freeze copy area"
+          ",Print, exec, grimblast --notify --freeze copy area"
         ]
         ++ (
           # workspaces
