@@ -132,7 +132,7 @@
           "$mainMod, Return, exec, kitty"
           "ALT, Return, exec, kitty --title float_kitty"
           "$mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'"
-          "$mainMod, B, exec, floorp"
+          "$mainMod, B, exec, librewolf"
           "$mainMod, N, exec, swaync-client -t"
           "$mainMod SHIFT, N, exec, swaync-client -d"
           "$mainMod SHIFT, Q, killactive,"
