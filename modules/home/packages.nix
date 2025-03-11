@@ -56,6 +56,7 @@
     python3
 
     cmatrix
+    caligula
     gparted # partition manager
     ffmpeg
     imv # image viewer
