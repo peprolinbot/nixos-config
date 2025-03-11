@@ -26,6 +26,7 @@
     ++ [(import ./scripts)] # personal scripts
     ++ [(import ./spotify.nix)]
     ++ [(import ./starship.nix)] # shell prompt
+    ++ [(import ./libreoffice.nix)]
     ++ [(import ./qt.nix)]
     ++ [(import ./vscodium.nix)] # vscode forck
     ++ [(import ./waybar)] # status bar

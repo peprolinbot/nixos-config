@@ -24,7 +24,6 @@
     inkscape
     kleopatra # Gpg GUI
     lazygit
-    libreoffice
     nemo-with-extensions # file manager
     jq
     nitch # systhem fetch util
