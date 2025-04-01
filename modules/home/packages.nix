@@ -44,9 +44,12 @@
     zenity
     wdisplays
     wireguard-tools
+wtype
+
+    # Wine stuff
     winetricks
     wineWowPackages.wayland
-    wtype
+    bottles
 
     # C / C++
     gcc
