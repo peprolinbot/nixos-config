@@ -62,7 +62,7 @@ wtype
     caligula
     gparted # partition manager
     ffmpeg
-    imv # image viewer
+    vimiv-qt # Image viewer, vim-like
     killall
     libnotify
     man-pages # extra man pages
