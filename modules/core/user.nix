@@ -23,7 +23,7 @@
   users.users.${username} = {
     isNormalUser = true;
     description = "${username}";
-    extraGroups = ["networkmanager" "wheel" "i2c" "libvirtd" "adbusers"];
+    extraGroups = ["networkmanager" "wheel" "i2c" "libvirtd" "adbusers" "dialout"];
     shell = pkgs.zsh;
   };
   nix.settings.allowed-users = ["${username}"];
