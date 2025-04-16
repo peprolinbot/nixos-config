@@ -1,9 +1,20 @@
 {pkgs, ...}: {
-  xdg.mimeApps.defaultApplications = {
+xdg.mimeApps.enable = true;
+  xdg.mimeApps.defaultApplications =
+{
     "inode/directory" = ["nemo.desktop"];
+"application/x-gnome-saved-search" = ["nemo.desktop"];
     "application/pdf" = ["okularApplication_pdf.desktop" "org.gnome.Evince.desktop"];
     "text/plain" = ["org.gnome.TextEditor.desktop"];
-  };
+  }
+    // builtins.listToAttrs (map (key: {
+      name = "image/${key}";
+      value = ["vimiv.desktop"];
+    }) ["png" "jpeg" "webp" "bmp" "gif"])
+    // builtins.listToAttrs (map (key: {
+      name = "video/${key}";
+      value = ["mpv.desktop"];
+    }) ["mp4" "x-matroska" "webm"]);
 
   home.packages = with pkgs; [
     bemoji # emoji picker
@@ -19,6 +30,7 @@
     freetube # YouTube client
     fzf # fuzzy finder
     gimp
+    gnome-text-editor
     gtrash # rm replacement, put deleted files in system trash
     imagemagick
     inkscape
