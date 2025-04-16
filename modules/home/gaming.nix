@@ -7,7 +7,7 @@
   home.packages = with pkgs; [
     ## Utils
     # gamemode
-    # gamescope
+    gamescope
     # winetricks
     # inputs.nix-gaming.packages.${pkgs.system}.wine-ge
 
