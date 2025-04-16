@@ -12,12 +12,15 @@
       kamadorueda.alejandra
       # python
       ms-python.python
+      ms-python.black-formatter
       # C/C++
       ms-vscode.cpptools
       # OCaml
       ocamllabs.ocaml-platform
       # CMake
       ms-vscode.cmake-tools
+      # TOML
+      tamasfe.even-better-toml
 
       # Color theme
       catppuccin.catppuccin-vsc
