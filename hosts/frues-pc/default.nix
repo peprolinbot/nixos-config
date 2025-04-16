@@ -18,7 +18,7 @@
 
   boot.initrd.kernelModules = ["amdgpu"];
   services.xserver.videoDrivers = ["amdgpu"];
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     rocmPackages.clr.icd
     amdvlk
   ];
@@ -35,4 +35,6 @@
     "HDMI-A-1, 1920x1080@75, 0x0, 1"
     "DP-1, 2560x1440@165, 1920x0, 1.333333"
   ];
+
+  services.sshd.enable = true;
 }
