@@ -142,6 +142,7 @@
           "$mainMod, D, exec, fuzzel"
           "$mainMod SHIFT, E, exec, bemoji -t"
           "$mainMod, M, exec, element-desktop"
+          "$mainMod, Y, exec, kitty spotify_player"
           "$mainMod, Escape, exec, loginctl lock-session"
           "$mainMod SHIFT, Escape, exec, shutdown-script"
           "$mainMod, P, pseudo,"
@@ -174,8 +175,8 @@
           )
         )
         ++ [
-          "$mainMod CTRL, c, workspace, empty"
-          "$mainMod SHIFT, c, movetoworkspace, empty"
+          "$mainMod CTRL, c, workspace, emptynm"
+          "$mainMod SHIFT, c, movetoworkspace, emptynm"
         ]
         ++ (
           # Window focus, movement and control
