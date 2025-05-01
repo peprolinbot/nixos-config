@@ -34,7 +34,6 @@
         libredirect
         multi-account-containers
         clearurls
-        istilldontcareaboutcookies
         hoppscotch
       ];
       bookmarks = {};
