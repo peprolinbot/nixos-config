@@ -85,7 +85,6 @@
     pavucontrol # pulseaudio volume controle (GUI)
     playerctl # controller for media players
     wl-clipboard # clipboard utils for wayland (wl-copy, wl-paste)
-    cliphist # clipboard manager
     poweralertd
     qalculate-gtk # calculator
     unzip

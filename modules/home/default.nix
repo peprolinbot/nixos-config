@@ -9,6 +9,7 @@
     ++ [(import ./browsers)] # browser configurations
     ++ [(import ./btop.nix)] # resouces monitor
     ++ [(import ./cava.nix)] # audio visualizer
+++ [(import ./cliphist.nix)] # clipboard
     ++ [(import ./discord.nix)] # discord with catppuccin theme
     ++ [(import ./gpg.nix)] # GnuPG and its agent (gpg-agent)
     ++ [(import ./fuzzel.nix)] # launcher

@@ -11,8 +11,6 @@
         "poweralertd &"
         "waybar &"
         "swaync &"
-        "wl-paste --type text --watch cliphist store &" #Stores only text data
-        "wl-paste --type image --watch cliphist store &" #Stores only image data
         "ckb-next -b &"
         "element-desktop --hidden &"
       ];
@@ -213,7 +211,7 @@
           "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 100%-"
 
           # clipboard manager
-          "$mainMod, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
+          "$mainMod, V, exec, cliphist list | fuzzel --dmenu --prompt '📋 ' | cliphist decode | wl-copy"
         ];
 
       # Bindings that work when locked
