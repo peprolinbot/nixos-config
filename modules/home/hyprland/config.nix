@@ -140,7 +140,7 @@
           "$mainMod SHIFT, F, fullscreen, 1"
           "$mainMod, Space, togglefloating,"
           "$mainMod, D, exec, fuzzel"
-          "$mainMod SHIFT, E, exec, bemoji -t"
+          "$mainMod SHIFT, E, exec, bemoji -n"
           "$mainMod, M, exec, element-desktop"
           "$mainMod, Y, exec, kitty spotify_player"
           "$mainMod, Escape, exec, loginctl lock-session"
