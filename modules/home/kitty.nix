@@ -8,6 +8,8 @@
   programs.kitty = {
     enable = true;
 
+    shellIntegration.enableZshIntegration = true;
+
     themeFile = "Catppuccin-Mocha";
 
     font = {
@@ -41,10 +43,6 @@
       "alt+2" = "goto_tab 2";
       "alt+3" = "goto_tab 3";
       "alt+4" = "goto_tab 4";
-
-      ## Unbind
-      "ctrl+shift+left" = "no_op";
-      "ctrl+shift+right" = "no_op";
     };
   };
 }

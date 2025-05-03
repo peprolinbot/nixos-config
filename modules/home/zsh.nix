@@ -34,6 +34,7 @@
       findw = "grep -rl";
       pdf = "tdf";
       open = "xdg-open";
+      find = "fd";
 
       l = "eza --icons  -a --group-directories-first -1"; #EZA_ICON_SPACING=2
       ll = "eza --icons  -a --group-directories-first -1 --no-user --long";
@@ -71,6 +72,11 @@
       # python
       piv = "python -m venv .venv";
       psv = "source .venv/bin/activate";
+
+      # ssh
+      s = "kitten ssh";
+      ssh = "kitten ssh";
+      ossh = "ssh";
     };
   };
 

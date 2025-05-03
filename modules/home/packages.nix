@@ -1,12 +1,12 @@
 {pkgs, ...}: {
-xdg.mimeApps.enable = true;
+  xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications =
-{
-    "inode/directory" = ["nemo.desktop"];
-"application/x-gnome-saved-search" = ["nemo.desktop"];
-    "application/pdf" = ["okularApplication_pdf.desktop" "org.gnome.Evince.desktop"];
-    "text/plain" = ["org.gnome.TextEditor.desktop"];
-  }
+    {
+      "inode/directory" = ["nemo.desktop"];
+      "application/x-gnome-saved-search" = ["nemo.desktop"];
+      "application/pdf" = ["okularApplication_pdf.desktop" "org.gnome.Evince.desktop"];
+      "text/plain" = ["org.gnome.TextEditor.desktop"];
+    }
     // builtins.listToAttrs (map (key: {
       name = "image/${key}";
       value = ["vimiv.desktop"];
@@ -23,6 +23,7 @@ xdg.mimeApps.enable = true;
     distrobox
     boxbuddy
     evince # gnome pdf viewer
+    eza # cool ls
     element-desktop # Matrix client
     fd # find replacement
     file # Show file information
@@ -56,7 +57,7 @@ xdg.mimeApps.enable = true;
     zenity
     wdisplays
     wireguard-tools
-wtype
+    wtype
 
     # Wine stuff
     winetricks
@@ -92,5 +93,10 @@ wtype
     xdg-utils
     xxd
     alejandra
+
+    # VPN
+    wireguard-tools
+    openconnect
+    networkmanager-openconnect
   ];
 }
