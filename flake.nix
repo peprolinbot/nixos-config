@@ -2,7 +2,7 @@
   description = "peprolinbot's nixos configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
@@ -13,10 +13,13 @@
 
     hypr-contrib.url = "github:hyprwm/contrib";
 
-    fjordlauncher.url = "github:unmojang/FjordLauncher";
+    fjordlauncher = {
+      url = "github:unmojang/FjordLauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

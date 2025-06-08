@@ -4,12 +4,13 @@
   ...
 }: {
   fonts.fontconfig.enable = true;
-  home.packages = [
-    pkgs.nerdfonts
-    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono" "Noto"];})
-    pkgs.twemoji-color-font
-    pkgs.noto-fonts-emoji
-    pkgs.roboto
+  home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.noto
+
+    twemoji-color-font
+    noto-fonts-emoji
+    roboto
   ];
 
   gtk = {
@@ -30,8 +31,8 @@
       package = pkgs.dracula-theme;
     };
     cursorTheme = {
-      name = "Nordzy-cursors";
-      package = pkgs.nordzy-cursor-theme;
+      name = "mochaDark";
+      package = pkgs.catppuccin-cursors;
       size = 22;
     };
   };

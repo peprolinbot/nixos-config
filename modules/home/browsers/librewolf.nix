@@ -18,24 +18,26 @@
         force = true;
         default = "FruesX";
         privateDefault = "FruesX";
-        order = ["FruesX" "DuckDuckGo" "Google"];
+        order = ["FruesX" "ddg" "google"];
         engines = {
           "FruesX" = {
             urls = [{template = "https://searx.peprolinbot.com/search?q={searchTerms}";}];
-            iconUpdateURL = "https://searx.peprolinbot.com/favicon.ico";
+            icon = "https://searx.peprolinbot.com/favicon.ico";
           };
         };
       };
-      bookmarks = {};
-      extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
-        # ublock-origin # Included in Librewolf
-        bitwarden
-        skip-redirect
-        libredirect
-        multi-account-containers
-        clearurls
-        hoppscotch
-      ];
+
+      extensions = {
+        packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+          # ublock-origin # Included in Librewolf
+          bitwarden
+          skip-redirect
+          libredirect
+          multi-account-containers
+          clearurls
+          hoppscotch
+        ];
+      };
       bookmarks = {};
       settings = {
         # Sync settings

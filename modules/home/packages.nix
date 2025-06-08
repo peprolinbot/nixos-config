@@ -35,7 +35,7 @@
     gtrash # rm replacement, put deleted files in system trash
     imagemagick
     inkscape
-    kleopatra # Gpg GUI
+    kdePackages.kleopatra # Gpg GUI
     lazygit
     nemo-with-extensions # file manager
     jq
