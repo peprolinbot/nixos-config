@@ -37,7 +37,6 @@
     inkscape
     kdePackages.kleopatra # Gpg GUI
     lazygit
-    nemo-with-extensions # file manager
     jq
     nitch # systhem fetch util
     nix-prefetch-github

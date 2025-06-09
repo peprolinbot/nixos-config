@@ -20,6 +20,7 @@
     ++ [(import ./kdeconnect.nix)]
     ++ [(import ./kitty.nix)] # terminal
     ++ [(import ./swaync)] # notification deamon
+++ [(import ./nemo.nix)] # File manager
     ++ [(import ./nextcloud.nix)] # nextcloud client
     ++ [(import ./nvim.nix)] # neovim editor
     ++ [(import ./packages.nix)] # other packages

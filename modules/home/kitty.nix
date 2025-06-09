@@ -1,10 +1,4 @@
 {pkgs, ...}: {
-  dconf.settings = {
-    "org/cinnamon/desktop/applications/terminal" = {
-      exec = "kitty";
-    };
-  };
-
   programs.kitty = {
     enable = true;
 
