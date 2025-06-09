@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
 
     firefox-addons = {
@@ -23,33 +22,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
-      flake = false;
-    };
-    catppuccin-cava = {
-      url = "github:catppuccin/cava";
-      flake = false;
-    };
-    catppuccin-starship = {
-      url = "github:catppuccin/starship";
-      flake = false;
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
     nixpkgs,
-    nixpkgs-unstable,
     self,
     ...
   } @ inputs: let
     username = "pedro";
     system = "x86_64-linux";
     pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-    pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
     };
@@ -61,7 +47,7 @@
         modules = [(import ./hosts/frues-pc)];
         specialArgs = {
           host = "frues-pc";
-          inherit self inputs username pkgs-unstable;
+          inherit self inputs username;
         };
       };
       frues-port = nixpkgs.lib.nixosSystem {
@@ -69,7 +55,7 @@
         modules = [(import ./hosts/frues-port)];
         specialArgs = {
           host = "frues-port";
-          inherit self inputs username pkgs-unstable;
+          inherit self inputs username;
         };
       };
       frues-vm = nixpkgs.lib.nixosSystem {
@@ -77,7 +63,7 @@
         modules = [(import ./hosts/frues-vm)];
         specialArgs = {
           host = "frues-vm";
-          inherit self inputs username pkgs-unstable;
+          inherit self inputs username;
         };
       };
       fruesos-live = nixpkgs.lib.nixosSystem {
@@ -88,7 +74,7 @@
         ];
         specialArgs = {
           host = "fruesos-live";
-          inherit self inputs username pkgs-unstable;
+          inherit self inputs username;
         };
       };
     };

@@ -22,10 +22,6 @@
         ms-vscode.cmake-tools
         # TOML
         tamasfe.even-better-toml
-
-        # Color theme
-        catppuccin.catppuccin-vsc
-        catppuccin.catppuccin-vsc-icons
       ];
 
       userSettings = {
@@ -34,12 +30,6 @@
         "window.titleBarStyle" = "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
 
         "window.menuBarVisibility" = "toggle";
-        "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont', 'monospace', monospace";
-        "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font', 'SymbolsNerdFont'";
-        "editor.fontSize" = 16;
-        "workbench.colorTheme" = "Catppuccin Mocha";
-        "workbench.iconTheme" = "catppuccin-mocha";
-        "catppuccin.accentColor" = "lavender";
         "vsicons.dontShowNewVersionMessage" = true;
         "explorer.confirmDragAndDrop" = true;
         "editor.fontLigatures" = true;

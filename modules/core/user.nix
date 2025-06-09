@@ -3,14 +3,14 @@
   inputs,
   username,
   host,
-  pkgs-unstable,
   ...
 }: {
   imports = [inputs.home-manager.nixosModules.home-manager];
   home-manager = {
+    backupFileExtension = "hmbkp";
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = {inherit inputs username host pkgs-unstable;};
+    extraSpecialArgs = {inherit inputs username host;};
     users.${username} = {
       imports = [./../home];
       home.username = "${username}";

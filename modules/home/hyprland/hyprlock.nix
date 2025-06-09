@@ -1,97 +1,73 @@
-{pkgs, ...}: {
-  programs.hyprlock.enable = true;
-  xdg.configFile."hypr/hyprlock.conf".text = ''
-    $red = rgb(f38ba8)
-    $yellow = rgb(f9e2af)
-    $lavender = rgb(b4befe)
+{config, ...}: {
+  programs.hyprlock = {
+    enable = true;
+    settings = let
+      colors = with config.lib.stylix.colors; {
+        text = base05;
+        accent = base0E;
+        warning = base0A;
+      };
+    in {
+      general = {
+        hide_cursor = true;
+      };
 
-    $mauve = rgb(cba6f7)
-    $mauveAlpha = cba6f7
+      background = {
+        path = "~/.config/hypr/wallpaper.png";
+        blur_passes = 2;
+      };
 
-    $base = rgb(1e1e2e)
-    $surface0 = rgb(313244)
-    $text = rgb(cdd6f4)
-    $textAlpha = cdd6f4
+      label = [
+        # Time
+        {
+          text = "cmd[update:30000] echo \"<b><big> $(date +\"%R\") </big></b>\"";
+          color = "rgb(${colors.text})";
+          font_size = 110;
+          shadow_passes = 3;
+          shadow_size = 3;
 
-    $accent = $lavender
-    $accentAlpha = $mauveAlpha
-    $font = JetBrainsMono Nerd Font
+          position = "0, -100";
+          halign = "center";
+          valign = "top";
+        }
 
-    # GENERAL
-    general {
-      disable_loading_bar = true
-      hide_cursor = true
-    }
+        # Date
+        {
+          text = "cmd[update:43200000] echo \"$(date +\"%A, %d %B %Y\")\"";
+          color = "rgb(${colors.text})";
+          font_size = 18;
+          position = "0, -300";
+          halign = "center";
+          valign = "top";
+        }
+      ];
 
-    # BACKGROUND
-    background {
-      monitor =
-      path = ~/.config/hypr/wallpaper.png
-      color = $base
-      blur_passes = 2
-    }
+      # User Avatar
+      image = {
+        path = "~/.face.png";
+        size = 125;
+        border_color = "rgb(${colors.accent})";
 
-    # TIME
-    label {
-      monitor =
-      text = cmd[update:30000] echo "<b><big> $(date +"%R") </big></b>"
-      color = $text
-      font_size = 110
-      font_family = $font
-      shadow_passes = 3
-      shadow_size = 3
+        position = "0, -450";
+        halign = "center";
+        valign = "center";
+      };
 
-      position = 0, -100
-      halign = center
-      valign = top
-    }
-
-    # DATE
-    label {
-      monitor =
-      text = cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"
-      color = $text
-      font_size = 18
-      font_family = $font
-      position = 0, -300
-      halign = center
-      valign = top
-    }
-
-    # USER AVATAR
-
-    image {
-      monitor =
-      path = ~/.face.png
-      size = 125
-      border_color = $accent
-
-      position = 0, -450
-      halign = center
-      valign = center
-    }
-
-    # INPUT FIELD
-    input-field {
-      monitor =
-      size = 300, 60
-      outline_thickness = 4
-      dots_size = 0.2
-      dots_spacing = 0.4
-      dots_center = true
-      outer_color = $accent
-      inner_color = $surface0
-      font_color = $text
-      fade_on_empty = false
-      placeholder_text = <span foreground="##$textAlpha"><i>󰌾  Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>
-      hide_input = false
-      check_color = $accent
-      fail_color = $red
-      fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i>
-      capslock_color = $yellow
-      position = 0, -100
-      halign = center
-      valign = center
-    }
-  '';
+      input-field = {
+        size = "300, 60";
+        outline_thickness = 4;
+        dots_size = 0.2;
+        dots_spacing = 0.4;
+        dots_center = true;
+        fade_on_empty = false;
+        placeholder_text = "<span foreground=\"##${colors.text}\"><i>󰌾  Logged in as </i><span foreground=\"##${colors.accent}\">$USER</span></span>";
+        hide_input = false;
+        fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
+        capslock_color = "rgb(${colors.warning})";
+        position = "0, -100";
+        halign = "center";
+        valign = "center";
+      };
+    };
+  };
 }

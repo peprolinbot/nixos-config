@@ -8,7 +8,7 @@
     settings = {
       "webgl.disabled" = false;
       # "privacy.resistFingerprinting" = false;
-      "privacy.clearOnShutdown.history" = false;
+      "privacy.clearOnShutdown.history" = true;
       "privacy.clearOnShutdown.cookies" = false;
       "network.cookie.lifetimePolicy" = 0;
       "identity.fxaccounts.enabled" = true;
@@ -35,6 +35,7 @@
           libredirect
           multi-account-containers
           clearurls
+          tridactyl
           hoppscotch
         ];
       };
@@ -48,6 +49,7 @@
         "services.sync.engine.passwords" = false;
         "services.sync.engine.prefs" = false;
         "services.sync.engine.tabs" = true;
+        "browser.urlbar.autoFill" = false;
 
         # Layout
         "browser.uiCustomization.state" = builtins.toJSON {
