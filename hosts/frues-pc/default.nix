@@ -32,8 +32,9 @@
   };
 
   home-manager.users.${username}.wayland.windowManager.hyprland.settings.monitor = [
-    "HDMI-A-1, 1920x1080@75, 0x0, 1"
+    "DP-2, 1920x1080@60, 0x0, 1"
     "DP-1, 2560x1440@165, 1920x0, 1.333333"
+"HDMI-A-1, 1920x1080@75, 3840x0, 1"
   ];
 
   services.sshd.enable = true;
