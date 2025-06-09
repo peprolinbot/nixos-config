@@ -16,12 +16,15 @@
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+# https://nixos.wiki/wiki/AMD_GPU
   boot.initrd.kernelModules = ["amdgpu"];
   services.xserver.videoDrivers = ["amdgpu"];
   hardware.graphics.extraPackages = with pkgs; [
     rocmPackages.clr.icd
     amdvlk
+driversi686Linux.amdvlk
   ];
+hardware.graphics.enable32Bit = true; # For 32 bit applications
 
   # It is an open-source implementation of Nvidia’s Moonlight game streaming application
   services.sunshine = {
