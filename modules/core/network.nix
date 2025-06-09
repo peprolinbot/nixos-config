@@ -18,5 +18,10 @@
 
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
+
+    wireguard-tools
+
+    openconnect
+    networkmanager-openconnect
   ];
 }
