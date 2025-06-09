@@ -18,6 +18,7 @@
     ++ [(import ./services.nix)]
     ++ [(import ./gaming.nix)]
     ++ [(import ./system.nix)]
+    ++ [(import ./stylix.nix)]
     ++ [(import ./user.nix)]
     ++ [(import ./wayland.nix)]
     ++ [(import ./virtualisation.nix)];

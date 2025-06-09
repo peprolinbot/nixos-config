@@ -1,13 +1,11 @@
 {
-  inputs,
   config,
   pkgs,
   ...
 }: {
-  imports = [inputs.stylix.homeModules.stylix];
-
   stylix = {
     enable = true;
+    autoEnable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     targets = {
       librewolf.profileNames = ["pedro"];
@@ -22,10 +20,7 @@
         name = "JetBrainsMono Nerd Font";
       };
 
-      emoji = {
-        package = pkgs.noto-fonts-emoji;
-        name = "Noto Color Emoji";
-      };
+      emoji = config.stylix.fonts.monospace;
     };
 
     cursor = {
