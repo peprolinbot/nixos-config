@@ -25,4 +25,6 @@
     # enableNvidiaPatches = false;
     systemd.enable = true;
   };
+
+  services.hyprpolkitagent.enable = true;
 }
