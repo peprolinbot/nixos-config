@@ -23,7 +23,7 @@
       # hidpi = true;
     };
     # enableNvidiaPatches = false;
-    systemd.enable = true;
+    systemd.enable = false;
   };
 
   services.hyprpolkitagent.enable = true;

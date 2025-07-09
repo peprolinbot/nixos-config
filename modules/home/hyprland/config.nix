@@ -3,15 +3,15 @@
     settings = {
       # autostart
       exec-once = [
-        "nm-applet &"
-        "wl-clip-persist --clipboard regular &"
-        "bash -c 'if [ ! -f ~/.config/hypr/wallpaper.png ]; then wall-change ~/.config/hypr/default_wallpaper.png; fi'"
-        "swaybg -m fill -i ~/.config/hypr/wallpaper.png &"
-        "poweralertd &"
-        "waybar &"
-        "swaync &"
-        "ckb-next -b &"
-        "element-desktop --hidden &"
+        "uwsm app -- nm-applet"
+        "uwsm app -- wl-clip-persist --clipboard regular"
+        "uwsm app -- bash -c 'if [ ! -f ~/.config/hypr/wallpaper.png ]; then wall-change ~/.config/hypr/default_wallpaper.png; fi'"
+        "uwsm app -- swaybg -m fill -i ~/.config/hypr/wallpaper.png &"
+        "uwsm app -- poweralertd"
+        "uwsm app -- waybar"
+        "uwsm app -- swaync"
+        "uwsm app -- ckb-next -b"
+        "uwsm app -- element-desktop --hidden"
       ];
 
       input = {
@@ -126,32 +126,33 @@
           "$mainMod, F1, exec, show-keybinds"
 
           # keybindings
-          "$mainMod, Return, exec, kitty"
-          "ALT, Return, exec, kitty --title float_kitty"
-          "$mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'"
-          "$mainMod, B, exec, librewolf"
-          "$mainMod, N, exec, swaync-client -t"
-          "$mainMod SHIFT, N, exec, swaync-client -d"
+          "$mainMod, Return, exec, uwsm app -- kitty"
+          "ALT, Return, exec, uwsm app -- kitty --title float_kitty"
+          "$mainMod SHIFT, Return, exec, uwsm app -- kitty --start-as=fullscreen -o 'font_size=16'"
+          "$mainMod, B, exec, uwsm app -- librewolf"
+          "$mainMod, N, exec, uwsm app -- swaync-client -t"
+          "$mainMod SHIFT, N, exec, uwsm app -- swaync-client -d"
           "$mainMod SHIFT, Q, killactive,"
           "$mainMod, F, fullscreen, 0"
           "$mainMod SHIFT, F, fullscreen, 1"
           "$mainMod, Space, togglefloating,"
-          "$mainMod, D, exec, fuzzel"
-          "$mainMod SHIFT, E, exec, bemoji -n"
-          "$mainMod, M, exec, element-desktop"
-          "$mainMod, Y, exec, kitty spotify_player"
-          "$mainMod, Escape, exec, loginctl lock-session"
-          "$mainMod SHIFT, Escape, exec, shutdown-script"
+          "$mainMod, D, exec, uwsm app -- fuzzel"
+          "$mainMod SHIFT, E, exec, uwsm app -- bemoji -n"
+          "$mainMod, M, exec, uwsm app -- element-desktop"
+          "$mainMod, Y, exec, uwsm app -- kitty spotify_player"
+          "$mainMod, X, exec, uwsm app -- rofi-rbw"
+          "$mainMod, Escape, exec, uwsm app -- loginctl lock-session"
+          "$mainMod SHIFT, Escape, exec, uwsm app -- shutdown-script"
           "$mainMod, P, pseudo,"
           "$mainMod SHIFT, P, togglesplit,"
-          "$mainMod, E, exec, nemo"
-          "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
-          "$mainMod, C ,exec, hyprpicker -a"
-          "$mainMod, W,exec, wallpaper-picker"
+          "$mainMod, E, exec, uwsm app -- nemo"
+          "$mainMod SHIFT, B, exec, uwsm app -- pkill -SIGUSR1 .waybar-wrapped"
+          "$mainMod, C ,exec, uwsm app -- hyprpicker -a"
+          "$mainMod, W,exec, uwsm app -- wallpaper-picker"
 
           # screenshot
-          "$mainMod, Print, exec, screenshot-menu"
-          ",Print, exec, grimblast --notify --freeze copy area"
+          "$mainMod, Print, exec, uwsm app -- screenshot-menu"
+          ",Print, exec, uwsm app -- grimblast --notify --freeze copy area"
         ]
         ++ (
           # workspaces

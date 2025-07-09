@@ -4,7 +4,11 @@
   username,
   ...
 }: {
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -30,9 +34,11 @@
     };
     cageArgs = ["-s" "-m" "last"]; # Only show on the last monitor
   };
+
   services.greetd.settings.initial_session = {
-    command = "Hyprland";
+    command = "uwsm start hyprland-uwsm.desktop";
     user = "${username}";
   };
+
   environment.sessionVariables.XKB_DEFAULT_LAYOUT = "es";
 }
