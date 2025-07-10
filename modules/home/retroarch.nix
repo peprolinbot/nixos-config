@@ -1,12 +1,11 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    (retroarch.override {
-      cores = with libretro; [
+    (retroarch.withCores (cores:
+      with cores; [
         fceumm
         gambatte
         mgba
         snes9x
-      ];
-    })
+      ]))
   ];
 }
