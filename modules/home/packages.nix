@@ -91,6 +91,7 @@
     xdg-utils
     xxd
     alejandra
+    usbutils
 
     # VPN
     wireguard-tools
