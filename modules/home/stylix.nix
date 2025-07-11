@@ -6,20 +6,21 @@
   stylix = {
     enable = true;
     autoEnable = true;
+
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    polarity = "dark";
+
     targets = {
       librewolf.profileNames = ["pedro"];
     };
+
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
       };
-
       serif = config.stylix.fonts.monospace;
-
       sansSerif = config.stylix.fonts.monospace;
-
       emoji = config.stylix.fonts.monospace;
     };
 
@@ -45,7 +46,5 @@
       popups = 0.8;
       terminal = 0.55;
     };
-
-    polarity = "dark";
   };
 }
