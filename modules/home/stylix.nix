@@ -11,14 +11,14 @@
       librewolf.profileNames = ["pedro"];
     };
     fonts = {
-      serif = config.stylix.fonts.monospace;
-
-      sansSerif = config.stylix.fonts.monospace;
-
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font";
       };
+
+      serif = config.stylix.fonts.monospace;
+
+      sansSerif = config.stylix.fonts.monospace;
 
       emoji = config.stylix.fonts.monospace;
     };
