@@ -25,7 +25,6 @@
     ++ [(import ./nextcloud.nix)] # nextcloud client
     ++ [(import ./nvim.nix)] # neovim editor
     ++ [(import ./packages.nix)] # other packages
-    ++ [(import ./retroarch.nix)]
     ++ [(import ./scripts)] # personal scripts
     ++ [(import ./spotify.nix)]
     ++ [(import ./starship.nix)] # shell prompt

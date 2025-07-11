@@ -4,6 +4,8 @@
   inputs,
   ...
 }: {
+  imports = [(import ./retroarch.nix)];
+
   home.packages = with pkgs; [
     ## Utils
     # gamemode
