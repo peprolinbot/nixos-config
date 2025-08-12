@@ -2,8 +2,9 @@
   meta.name = "frues-clan";
 
   inventory.machines = {
-    # Define machines here.
-    # jon = { };
+    aresix = {
+      deploy.targetHost = "root@[4a6:fed0:59ba:507d:baab:15f3:846d:ead4]";
+    };
   };
 
   # Docs: See https://docs.clan.lol/reference/clanServices
