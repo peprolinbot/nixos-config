@@ -8,6 +8,11 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    tg-ha-door = {
+      url = "github:peprolinbot/tg-ha-door";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
