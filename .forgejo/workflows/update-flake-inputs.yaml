@@ -1,0 +1,45 @@
+name: Update `flake.lock`
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+  schedule:
+    - cron: '0 0 * * 6' # runs weekly on Saturday at 00:00
+
+jobs:
+  update_lockfile:
+    runs-on: docker
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install nix
+        uses: https://github.com/DeterminateSystems/nix-installer-action@main
+      
+      - name: Install dependencies
+        run: |
+          apt-get update && apt-get install jq -y
+
+      - name: Update flake.lock
+        id: update
+        run: |
+          nix flake update 2> >(tee /dev/stderr) | awk '
+            /^• Updated input/ {in_update = 1; print; next}
+            in_update && !/^warning:/ {print}
+            /^$/ {in_update = 0}
+          ' > update.log
+
+          echo "UPDATE_LOG<<EOF" >> $GITHUB_ENV
+          cat update.log >> $GITHUB_ENV 
+          echo "EOF" >> $GITHUB_ENV
+
+          rm update.log
+          
+      - name: Create Pull Request
+        uses: https://github.com/maxking/forgejo-create-pr@main
+        with:
+          token: ${{ secrets.FORGEJO_TOKEN }}
+          base: 'main'
+          pr-branch: 'flake-update'
+          commit-message: 'flake.lock: update'
+          pr-title: 'flake.lock: update'
+          pr-body: Automated flake update
