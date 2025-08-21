@@ -5,9 +5,29 @@
 }: {
   imports = [inputs.tg-ha-door.nixosModules.tg-ha-door];
 
+  clan.core.vars.generators.tg-ha-door = {
+    prompts.telegram-bot-token = {
+      description = "Telegram token for the tg-ha-door bot";
+      type = "hidden";
+    };
+
+    prompts.home-assistant-auth-token = {
+      description = "Home Assistant token tg-ha-door will use to connect to the instance";
+      type = "hidden";
+    };
+
+    files.credentials-file.secret = true;
+    script = ''
+      {
+        echo "TG_BOT_TOKEN=$(<$prompts/telegram-bot-token)"
+        echo "HA_AUTH_TOKEN=$(<$prompts/home-assistant-auth-token)"
+      } > $out/credentials-file
+    '';
+  };
+
   services.tg-ha-door = {
     enable = true;
-    credentialsFile = config.sops.secrets.tg-ha-door-creds.path;
+    credentialsFile = config.clan.core.vars.generators.tg-ha-door.files.credentials-file.path;
     settings = {
       TG_KEY_CHAT_ID = "-1001455284010";
       TG_LOG_CHAT_ID = "-1001359679497";
