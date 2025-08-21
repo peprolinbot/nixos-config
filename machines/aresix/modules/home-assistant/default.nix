@@ -1,6 +1,7 @@
 {
   inputs,
   config,
+  pkgs,
   ...
 }: {
   imports = [inputs.tg-ha-door.nixosModules.tg-ha-door];
@@ -37,7 +38,10 @@
     };
   };
 
-  services.esphome.enable = true;
+  services.esphome = {
+    enable = true;
+    address = "::1"; # Proxied trough home assistant
+  };
 
   services.home-assistant = {
     enable = true;
@@ -57,7 +61,17 @@
       "esphome"
       "mobile_app"
     ];
+    customComponents = [(pkgs.callPackage ./custom_components/panel_proxy.nix {})];
     config = {
+      panel_proxy = {
+        esphome = {
+          title = "ESPHome Dashboard";
+          icon = "mdi:chip";
+          url = "http://[::1]:6052/";
+          require_admin = true;
+        };
+      };
+
       http = {
         trusted_proxies = ["::1"];
         use_x_forwarded_for = true;

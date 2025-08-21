@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./modules/reverse-proxy.nix
-    ./modules/home-assistant.nix
+    ./modules/home-assistant
     ./modules/dyndns.nix
     ./modules/network.nix
   ];
