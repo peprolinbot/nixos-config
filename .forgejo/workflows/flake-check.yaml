@@ -1,0 +1,17 @@
+name: "Flake check"
+
+on:
+  pull_request:
+  push:
+    branches: ['main']
+
+jobs:
+  check:
+    runs-on: docker
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install nix
+        uses: https://github.com/DeterminateSystems/nix-installer-action@main
+      - name: Run nix flake check
+        run: nix flake check
