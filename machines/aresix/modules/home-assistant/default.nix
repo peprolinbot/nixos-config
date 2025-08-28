@@ -19,10 +19,10 @@
 
     files.credentials-file.secret = true;
     script = ''
-      {
-        echo "TG_BOT_TOKEN=$(<$prompts/telegram-bot-token)"
-        echo "HA_AUTH_TOKEN=$(<$prompts/home-assistant-auth-token)"
-      } > $out/credentials-file
+      cat <<EOL > $out/credentials-file
+      TG_BOT_TOKEN=$(<$prompts/telegram-bot-token)
+      HA_AUTH_TOKEN=$(<$prompts/home-assistant-auth-token)
+      EOL
     '';
   };
 
