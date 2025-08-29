@@ -38,9 +38,19 @@
     };
   };
 
-  services.esphome = {
-    enable = true;
-    address = "::1"; # Proxied trough home assistant
+  virtualisation.oci-containers.containers.esphome = {
+    image = "ghcr.io/esphome/esphome:2025.6.3";
+    volumes = [
+      "/var/lib/esphome:/config"
+    ];
+    privileged = true;
+    extraOptions = ["--network=host"]; # Host networking mode is required for online status indicators
+    cmd = [
+      "dashboard"
+      "--address"
+      "::1"
+      "/config"
+    ];
   };
 
   services.home-assistant = {
