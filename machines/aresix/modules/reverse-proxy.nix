@@ -27,6 +27,17 @@
           proxyWebsockets = true;
         };
       };
+      "wg.campares.duckdns.org" = {
+        forceSSL = true;
+        enableACME = true;
+        extraConfig = ''
+          proxy_buffering off;
+        '';
+        locations."/" = {
+          proxyPass = "http://[::1]:8000";
+          proxyWebsockets = true;
+        };
+      };
     };
   };
 }

@@ -4,6 +4,7 @@
     ./modules/home-assistant
     ./modules/dyndns.nix
     ./modules/network.nix
+    ./modules/wireguard.nix
   ];
 
   services.logind.lidSwitch = "ignore";
