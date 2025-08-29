@@ -5,6 +5,7 @@
     ./modules/dyndns.nix
     ./modules/network.nix
     ./modules/wireguard.nix
+    ./modules/users.nix
   ];
 
   services.logind.lidSwitch = "ignore";
