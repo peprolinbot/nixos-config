@@ -4,6 +4,8 @@
   inventory.machines = {
     aresix = {
       deploy.targetHost = "root@[4a6:fed0:59ba:507d:baab:15f3:846d:ead4]";
+tags = ["server" "headless" "spain"];
+    };
     };
   };
 
@@ -35,6 +37,12 @@
       };
 
       roles.default.extraModules = [./users/pedro/home.nix];
+    };
+
+    spain-located = {
+      module.name = "importer";
+      roles.default.tags.desktop = {};
+      roles.default.extraModules = ["modules/spain.nix"];
     };
 
     # Docs: https://docs.clan.lol/reference/clanServices/mycelium/
