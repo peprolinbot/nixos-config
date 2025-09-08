@@ -1,0 +1,19 @@
+{
+  selectedFilterLists = [
+    "user-filters"
+    "ublock-filters"
+    "ublock-badware"
+    "ublock-privacy"
+    "ublock-quick-fixes"
+    "ublock-unbreak"
+    "easylist"
+    "easyprivacy"
+    "LegitimateURLShortener"
+    "adguard-spyware-url"
+    "urlhaus-1"
+    "curben-phishing"
+    "plowe-0"
+    "fanboy-cookiemonster"
+    "ublock-cookies-easylist"
+  ];
+}

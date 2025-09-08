@@ -3,9 +3,10 @@
 
   inventory.machines = {
     aresix = {
-      deploy.targetHost = "root@[4a6:fed0:59ba:507d:baab:15f3:846d:ead4]";
-tags = ["server" "headless" "spain"];
+      tags = ["server" "headless" "spain"];
     };
+    frues-pc = {
+      tags = ["desktop" "spain" "gaming"];
     };
   };
 
@@ -39,15 +40,44 @@ tags = ["server" "headless" "spain"];
       roles.default.extraModules = [./users/pedro/home.nix];
     };
 
-    spain-located = {
+    podman = {
       module.name = "importer";
       roles.default.tags.desktop = {};
+      roles.default.extraModules = ["modules/podman.nix"];
+    };
+
+    virtualisation = {
+      module.name = "importer";
+      roles.default.tags.desktop = {};
+      roles.default.extraModules = ["modules/virtualisation.nix"];
+    };
+
+    spain-located = {
+      module.name = "importer";
+      roles.default.tags.all = {};
       roles.default.extraModules = ["modules/spain.nix"];
+    };
+
+    desktop-base = {
+      module.name = "importer";
+      roles.default.tags.desktop = {};
+      roles.default.extraModules = ["modules/desktop/base"];
+    };
+
+    desktop-gaming = {
+      module.name = "importer";
+      roles.default.tags.gaming = {};
+      roles.default.extraModules = ["modules/desktop/gaming.nix"];
     };
 
     # Docs: https://docs.clan.lol/reference/clanServices/mycelium/
     mycelium = {
       roles.peer.tags.all = {};
+    };
+
+    # Fallback: Secure connections via Tor
+    tor = {
+      roles.server.tags.all = {};
     };
   };
 }
