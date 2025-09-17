@@ -8,6 +8,9 @@
     frues-pc = {
       tags = ["desktop" "spain" "gaming"];
     };
+    terrier = {
+      tags = ["server" "headless" "raspberry"];
+    };
   };
 
   # Docs: See https://docs.clan.lol/reference/clanServices
