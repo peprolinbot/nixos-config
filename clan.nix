@@ -8,6 +8,9 @@
     frues-pc = {
       tags = ["desktop" "spain" "gaming"];
     };
+    frues-port = {
+      tags = ["desktop" "spain"];
+    };
     terrier = {
       tags = ["server" "headless" "raspberry"];
     };
