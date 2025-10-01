@@ -4,6 +4,8 @@
     gnome.gnome-keyring.enable = true;
     dbus.enable = true;
 
+    fwupd.enable = true;
+
     flatpak.enable = true;
 
     printing.enable = true;
