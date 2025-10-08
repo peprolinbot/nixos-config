@@ -63,6 +63,7 @@ in {
         vlc
         mpv # video player
         xournalpp # For notes and pdf editing
+        rnote # Modern alternative to Xournal++
         qbittorrent # torrent client
         speedcrunch # Fast power user calculator
         simple-scan
