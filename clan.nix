@@ -11,6 +11,9 @@
     frues-port = {
       tags = ["desktop" "spain"];
     };
+    frues-surface3 = {
+      tags = ["desktop" "spain"];
+    };
     terrier = {
       tags = ["server" "headless" "raspberry"];
     };
