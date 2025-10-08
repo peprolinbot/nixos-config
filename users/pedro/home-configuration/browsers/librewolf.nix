@@ -62,7 +62,6 @@
         packages = with inputs.firefox-addons.packages.${pkgs.system}; [
           ublock-origin # Included in Librewolf
           bitwarden
-          skip-redirect
           libredirect
           multi-account-containers
           tridactyl
