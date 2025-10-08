@@ -2,6 +2,7 @@
   inputs,
   config,
   pkgs,
+  osConfig,
   ...
 }: {
   imports = [inputs.stylix.homeModules.stylix];
@@ -27,14 +28,22 @@
       emoji = config.stylix.fonts.monospace;
     };
 
-    cursor = {
-      package = pkgs.catppuccin-cursors.mochaDark;
-      name = "Catppuccin Mocha Dark";
-      size = 22;
-    };
+    cursor =
+      if osConfig.hm-pedro.de == "gnome" # https://github.com/nix-community/stylix/issues/359
+      then {
+        package = pkgs.adwaita-icon-theme;
+        name = "Adwaita";
+        size = 22;
+      }
+      else {
+        package = pkgs.catppuccin-cursors.mochaDark;
+        name = "Catppuccin Mocha Dark";
+        size = 22;
+      };
 
     iconTheme = {
       enable = true;
+      # package = pkgs.adwaita-icon-theme;
       package = pkgs.catppuccin-papirus-folders.override {
         flavor = "mocha";
         accent = "lavender";

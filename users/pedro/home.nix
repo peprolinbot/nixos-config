@@ -9,7 +9,7 @@
   options = {
     hm-pedro.de = lib.mkOption {
       default = "none";
-      type = lib.types.enum ["none" "hyprland"];
+      type = lib.types.enum ["none" "hyprland" "gnome"];
     };
   };
   config = {
