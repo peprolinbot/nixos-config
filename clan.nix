@@ -81,12 +81,12 @@
 
     # Docs: https://docs.clan.lol/reference/clanServices/mycelium/
     mycelium = {
-      roles.peer.tags.all = {};
+      roles.peer.tags.server = {};
     };
 
     # Fallback: Secure connections via Tor
     tor = {
-      roles.server.tags.all = {};
+      roles.server.tags.server = {};
     };
   };
 }
