@@ -1,4 +1,8 @@
-{...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   security.acme = {
     acceptTerms = true;
     defaults.email = "personal+letsencrypt@peprolinbot.com";
@@ -15,29 +19,41 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
 
-    virtualHosts = {
-      "ha.campares.duckdns.org" = {
+    virtualHosts = let
+      base = locations: {
+        inherit locations;
+
         forceSSL = true;
         enableACME = true;
-        extraConfig = ''
-          proxy_buffering off;
-        '';
-        locations."/" = {
-          proxyPass = "http://[::1]:8123";
-          proxyWebsockets = true;
-        };
       };
-      "wg.campares.duckdns.org" = {
-        forceSSL = true;
-        enableACME = true;
-        extraConfig = ''
-          proxy_buffering off;
-        '';
-        locations."/" = {
-          proxyPass = "http://[::1]:8000";
-          proxyWebsockets = true;
+
+      proxy = {
+        port,
+        websockets ? false,
+      }:
+        (base {
+          "/" = {
+            proxyPass = "http://[::1]:" + toString port + "/";
+            proxyWebsockets = websockets;
+          };
+        })
+        // {
+          extraConfig = lib.mkIf websockets ''
+            proxy_buffering off;
+          '';
         };
-      };
+
+      proxySimple = port: proxy {inherit port;};
+
+      proxyWebsockets = port:
+        proxy {
+          inherit port;
+          websockets = true;
+        };
+    in {
+      "ha.campares.duckdns.org" = proxyWebsockets config.services.home-assistant.config.http.server_port;
+
+      "wg.campares.duckdns.org" = proxySimple config.services.wg-access-server.settings.port;
     };
   };
 }

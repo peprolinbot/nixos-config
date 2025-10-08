@@ -25,6 +25,7 @@
 
     settings = {
       httpHost = "::1";
+      port = 8000;
     };
 
     secretsFile = config.clan.core.vars.generators.wg-access-server.files.secrets-file.path;
