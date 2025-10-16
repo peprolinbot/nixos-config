@@ -1,4 +1,8 @@
-{osConfig, ...}: {
+{
+  osConfig,
+  lib,
+  ...
+}: {
   imports =
     [
       ./programs
@@ -11,8 +15,8 @@
       ./zsh.nix
     ]
     ++ (
-      if osConfig.hm-pedro.de != "none"
-      then [
+      lib.lists.optionals (osConfig.hm-pedro.de != "none")
+[
         ./browsers
         ./gtk.nix
         ./kitty.nix
@@ -22,16 +26,14 @@
         ./spotify.nix
         ./vscodium.nix
       ]
-      else []
-    )
+          )
     ++ (
-      if osConfig.hm-pedro.de == "hyprland"
-      then [
+      lib.lists.optionals (osConfig.hm-pedro.de == "hyprland")
+[
         ./hyprland
         ./scripts
         ./waybar
         ./mako.nix
       ]
-      else []
-    );
+          );
 }
