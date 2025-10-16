@@ -49,6 +49,12 @@
       roles.default.extraModules = [./users/pedro/home.nix];
     };
 
+    base-all = {
+      module.name = "importer";
+      roles.default.tags.all = {};
+      roles.default.extraModules = ["modules/base.nix"];
+    };
+
     podman = {
       module.name = "importer";
       roles.default.tags.desktop = {};
