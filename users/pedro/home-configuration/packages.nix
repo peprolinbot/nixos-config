@@ -6,9 +6,9 @@
 }: let
   hasDE = osConfig.hm-pedro.de != "none";
 in {
-  xdg.mimeApps = lib.mkif (osConfig.hm-pedro.de != "none") {
+  xdg.mimeApps = lib.mkIf (osConfig.hm-pedro.de != "none") {
     enable = true;
-    xdg.mimeApps.defaultApplications =
+    defaultApplications =
       {
         "application/pdf" = ["okularApplication_pdf.desktop" "org.gnome.Evince.desktop"];
         "text/plain" = ["org.gnome.TextEditor.desktop"];
