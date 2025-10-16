@@ -4,6 +4,10 @@
   lib,
   ...
 }: {
+  imports = [
+    ./modules/home-assistant.nix
+  ];
+
   nixpkgs.hostPlatform = "aarch64-linux";
 
   boot.initrd.systemd.tpm2.enable = false; # https://github.com/NixOS/nixpkgs/issues/344963

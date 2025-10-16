@@ -216,7 +216,7 @@
             },
             {
                 "index": 18,
-                "attached_to": 10,
+                "attached_to": 11,
                 "class_list": [
                     "disk",
                     "block_device"
@@ -231,11 +231,11 @@
                     "name": "Disk",
                     "value": 0
                 },
-                "serial": "0xdab60614",
+                "serial": "0x25f1570b",
                 "model": "Disk",
                 "sysfs_id": "/class/block/mmcblk0",
-                "sysfs_bus_id": "mmc0:5048",
-                "sysfs_device_link": "/devices/platform/emmc2bus/fe340000.mmc/mmc_host/mmc0/mmc0:5048",
+                "sysfs_bus_id": "mmc0:59b4",
+                "sysfs_device_link": "/devices/platform/emmc2bus/fe340000.mmc/mmc_host/mmc0/mmc0:59b4",
                 "unix_device_name": "/dev/mmcblk0",
                 "unix_device_number": {
                     "type": 98,
@@ -244,14 +244,14 @@
                     "range": 32
                 },
                 "unix_device_names": [
-                    "/dev/disk/by-id/mmc-SD16G_0xdab60614",
+                    "/dev/disk/by-id/mmc-EC1S5_0x25f1570b",
                     "/dev/disk/by-path/platform-fe340000.mmc",
                     "/dev/mmcblk0"
                 ],
                 "resources": [
                     {
                         "type": "disk_geo",
-                        "cylinders": 472576,
+                        "cylinders": 1955840,
                         "heads": 4,
                         "sectors": 16,
                         "size": "0x0",
@@ -260,7 +260,7 @@
                     {
                         "type": "size",
                         "unit": "sectors",
-                        "value_1": 30244864,
+                        "value_1": 125173760,
                         "value_2": 512
                     }
                 ],
@@ -1052,7 +1052,7 @@
                 },
                 "slot": {
                     "bus": 0,
-                    "number": 0
+                    "number": 1
                 },
                 "base_class": {
                     "hex": "0117",
@@ -1060,14 +1060,10 @@
                     "value": 279
                 },
                 "vendor": "",
-                "device": "SD Controller 0",
-                "model": "SD Controller 0",
-                "sysfs_id": "/devices/platform/emmc2bus/fe340000.mmc/mmc_host/mmc0/mmc0:5048",
-                "sysfs_bus_id": "mmc0:5048",
-                "driver": "mmcblk",
-                "drivers": [
-                    "mmcblk"
-                ]
+                "device": "SDIO Controller 1",
+                "model": "SDIO Controller 1",
+                "sysfs_id": "/devices/platform/soc/fe300000.mmcnr/mmc_host/mmc1/mmc1:0001",
+                "sysfs_bus_id": "mmc1:0001"
             },
             {
                 "index": 11,
@@ -1082,7 +1078,7 @@
                 },
                 "slot": {
                     "bus": 0,
-                    "number": 1
+                    "number": 0
                 },
                 "base_class": {
                     "hex": "0117",
@@ -1090,10 +1086,14 @@
                     "value": 279
                 },
                 "vendor": "",
-                "device": "SDIO Controller 1",
-                "model": "SDIO Controller 1",
-                "sysfs_id": "/devices/platform/soc/fe300000.mmcnr/mmc_host/mmc1/mmc1:0001",
-                "sysfs_bus_id": "mmc1:0001"
+                "device": "SD Controller 0",
+                "model": "SD Controller 0",
+                "sysfs_id": "/devices/platform/emmc2bus/fe340000.mmc/mmc_host/mmc0/mmc0:59b4",
+                "sysfs_bus_id": "mmc0:59b4",
+                "driver": "mmcblk",
+                "drivers": [
+                    "mmcblk"
+                ]
             }
         ],
         "network_controller": [
@@ -1233,7 +1233,7 @@
             },
             {
                 "index": 13,
-                "attached_to": 11,
+                "attached_to": 10,
                 "class_list": [
                     "network_controller"
                 ],
@@ -1284,7 +1284,7 @@
         ],
         "network_interface": [
             {
-                "index": 36,
+                "index": 35,
                 "attached_to": 0,
                 "class_list": [
                     "network_interface"
@@ -1307,7 +1307,7 @@
                 ]
             },
             {
-                "index": 37,
+                "index": 36,
                 "attached_to": 0,
                 "class_list": [
                     "network_interface"
@@ -1393,7 +1393,7 @@
         "unknown": [
             {
                 "index": 12,
-                "attached_to": 11,
+                "attached_to": 10,
                 "class_list": [
                     "unknown"
                 ],
@@ -1433,7 +1433,7 @@
             },
             {
                 "index": 14,
-                "attached_to": 11,
+                "attached_to": 10,
                 "class_list": [
                     "unknown"
                 ],
@@ -1539,7 +1539,7 @@
                 "resources": [
                     {
                         "type": "irq",
-                        "base": 37,
+                        "base": 38,
                         "triggered": 0,
                         "enabled": true
                     },
@@ -1557,7 +1557,7 @@
                     "command": 1030,
                     "header_type": 0,
                     "secondary_bus": 0,
-                    "irq": 37,
+                    "irq": 38,
                     "prog_if": 48
                 },
                 "driver": "xhci_hcd",

@@ -54,6 +54,19 @@
       "ha.campares.duckdns.org" = proxyWebsockets config.services.home-assistant.config.http.server_port;
 
       "wg.campares.duckdns.org" = proxySimple config.services.wg-access-server.settings.port;
+
+      "ha.morada.campares.duckdns.org" = {
+        forceSSL = true;
+        enableACME = true;
+
+        locations."/" = {
+          proxyPass = "http://[544:5d19:c117:8cc2:85c6:6a16:e78a:9737]:8123";
+          proxyWebsockets = true;
+          extraConfig = ''
+            proxy_buffering off;
+          '';
+        };
+      };
     };
   };
 }
