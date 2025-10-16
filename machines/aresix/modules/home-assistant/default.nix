@@ -73,6 +73,11 @@
     ];
     customComponents = [(pkgs.callPackage ./custom_components/panel_proxy.nix {})];
     config = {
+      homeassistant = {
+        name = "Campares";
+        external_url = "https://ha.campares.duckdns.org";
+      };
+
       panel_proxy = {
         esphome = {
           title = "ESPHome Dashboard";
