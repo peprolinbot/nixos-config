@@ -1,24 +1,27 @@
 {
   osConfig,
   pkgs,
+  lib,
   ...
 }: let
   hasDE = osConfig.hm-pedro.de != "none";
 in {
-  xdg.mimeApps.enable = hasDE;
-  xdg.mimeApps.defaultApplications =
-    {
-      "application/pdf" = ["okularApplication_pdf.desktop" "org.gnome.Evince.desktop"];
-      "text/plain" = ["org.gnome.TextEditor.desktop"];
-    }
-    // builtins.listToAttrs (map (key: {
-      name = "image/${key}";
-      value = ["vimiv.desktop"];
-    }) ["png" "jpeg" "webp" "bmp" "gif"])
-    // builtins.listToAttrs (map (key: {
-      name = "video/${key}";
-      value = ["mpv.desktop"];
-    }) ["mp4" "x-matroska" "webm"]);
+  xdg.mimeApps = lib.mkif (osConfig.hm-pedro.de != "none") {
+    enable = true;
+    xdg.mimeApps.defaultApplications =
+      {
+        "application/pdf" = ["okularApplication_pdf.desktop" "org.gnome.Evince.desktop"];
+        "text/plain" = ["org.gnome.TextEditor.desktop"];
+      }
+      // builtins.listToAttrs (map (key: {
+        name = "image/${key}";
+        value = ["vimiv.desktop"];
+      }) ["png" "jpeg" "webp" "bmp" "gif"])
+      // builtins.listToAttrs (map (key: {
+        name = "video/${key}";
+        value = ["mpv.desktop"];
+      }) ["mp4" "x-matroska" "webm"]);
+  };
 
   home.packages = with pkgs; ([
       # CLI utils
@@ -33,24 +36,23 @@ in {
       todo # cli todo list
       yazi # terminal file manager
       yt-dlp
-      wtype # xdotool type for wayland
       caligula # TUI for disk imaging
       ffmpeg
       killall
       man-pages # extra man pages
       openssl
-      pamixer # pulseaudio command line mixer
-      playerctl # controller for media players
-      wl-clipboard # clipboard utils for wayland (wl-copy, wl-paste)
       unzip
       wget
       usbutils
       gotify-cli
     ]
     ++ (
-      if hasDE
-      then [
-        #GUI Utils
+      lib.lists.optionals (osConfig.hm-pedro.de != "none") [
+        # CLI but only makes sense in DE
+        pamixer # pulseaudio command line mixer
+        playerctl # controller for media players
+
+        # GUI Utils
         zenity # Create GTK dialog boxes from CLI
         file-roller # Archive manager
         wdisplays # Configuring displays in Wayland compositors
@@ -87,6 +89,11 @@ in {
         openconnect
         networkmanager-openconnect
       ]
-      else []
+    )
+    ++ (
+      lib.lists.optionals (osConfig.hm-pedro.de == "hyprland") [
+        wl-clipboard # clipboard utils for wayland (wl-copy, wl-paste)
+        wtype # xdotool type for wayland
+      ]
     ));
 }
