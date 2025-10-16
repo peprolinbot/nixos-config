@@ -17,6 +17,9 @@
     terrier = {
       tags = ["server" "headless" "raspberry"];
     };
+    beagle = {
+      tags = ["server" "headless" "vm"];
+    };
   };
 
   # Docs: See https://docs.clan.lol/reference/clanServices
@@ -53,6 +56,12 @@
       module.name = "importer";
       roles.default.tags.all = {};
       roles.default.extraModules = ["modules/base.nix"];
+    };
+
+    vm-base = {
+      module.name = "importer";
+      roles.default.tags.vm = {};
+      roles.default.extraModules = ["modules/vm.nix"];
     };
 
     podman = {
