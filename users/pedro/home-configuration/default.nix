@@ -7,6 +7,7 @@
     [
       ./programs
       ./distrobox.nix
+      ./helix.nix
       ./git.nix
       ./gpg.nix
       ./packages.nix
@@ -16,7 +17,7 @@
     ]
     ++ (
       lib.lists.optionals (osConfig.hm-pedro.de != "none")
-[
+      [
         ./browsers
         ./gtk.nix
         ./kitty.nix
@@ -26,14 +27,14 @@
         ./spotify.nix
         ./vscodium.nix
       ]
-          )
+    )
     ++ (
       lib.lists.optionals (osConfig.hm-pedro.de == "hyprland")
-[
+      [
         ./hyprland
         ./scripts
         ./waybar
         ./mako.nix
       ]
-          );
+    );
 }
