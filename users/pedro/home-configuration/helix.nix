@@ -50,6 +50,10 @@
         }
       ];
     };
-    settings = { };
+    settings = {
+      editor = {
+        bufferline = "always";
+      };
+    };
   };
 }
