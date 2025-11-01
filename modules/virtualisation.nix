@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # Install necessary packages
   environment.systemPackages = with pkgs; [
     virt-manager
@@ -9,6 +10,7 @@
     win-virtio
     win-spice
     adwaita-icon-theme
+    lxqt.lxqt-openssh-askpass
   ];
 
   # Manage the virtualisation services
@@ -18,7 +20,7 @@
       qemu = {
         swtpm.enable = true;
         ovmf.enable = true;
-        ovmf.packages = [pkgs.OVMFFull.fd];
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
 
