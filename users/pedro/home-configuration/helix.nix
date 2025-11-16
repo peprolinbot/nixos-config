@@ -43,9 +43,11 @@
         {
           name = "json";
           formatter = {
-            command = "${pkgs.nodePackages.prettier}/bin/prettier";
+            command = "${pkgs.deno}/bin/deno";
             args = [
-              "--parser"
+              "fmt"
+              "-"
+              "--ext"
               "json"
             ];
           };
