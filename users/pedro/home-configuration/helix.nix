@@ -16,6 +16,8 @@
         };
 
         vscode-json-language-server.command = "${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver";
+
+        marksman.command = "${pkgs.marksman}/bin/marksman";
       };
 
       language = [
@@ -45,6 +47,19 @@
             args = [
               "--parser"
               "json"
+            ];
+          };
+        }
+        {
+          name = "markdown";
+          auto-format = true;
+          formatter = {
+            command = "${pkgs.deno}/bin/deno";
+            args = [
+              "fmt"
+              "-"
+              "--ext"
+              "md"
             ];
           };
         }
