@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./disks.nix
     ../../modules/desktop/hyprland.nix
@@ -19,13 +20,7 @@
     };
   };
 
-  # It is an open-source implementation of Nvidia’s Moonlight game streaming application
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
+  services.sunshine.autoStart = true;
 
   home-manager.users.pedro.wayland.windowManager.hyprland.settings = {
     monitor = [

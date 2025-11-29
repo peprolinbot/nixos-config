@@ -11,4 +11,11 @@
   programs.gamemode.enable = true;
 
   services.joycond.enable = true;
+
+  services.sunshine = {
+    enable = true;
+    autoStart = lib.mkDefault false;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 }
