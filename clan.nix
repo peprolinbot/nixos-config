@@ -20,6 +20,7 @@
       tags = [
         "desktop"
         "spain"
+        "gaming"
       ];
     };
     frues-surface3 = {
