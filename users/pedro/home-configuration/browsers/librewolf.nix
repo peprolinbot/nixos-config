@@ -1,9 +1,9 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
-}: {
+}:
+{
   programs.librewolf = {
     enable = true;
     settings = {
@@ -19,10 +19,14 @@
         force = true;
         default = "FruesX";
         privateDefault = "FruesX";
-        order = ["FruesX" "ddg" "google"];
+        order = [
+          "FruesX"
+          "ddg"
+          "google"
+        ];
         engines = {
           "FruesX" = {
-            urls = [{template = "https://searx.peprolinbot.com/search?q={searchTerms}";}];
+            urls = [ { template = "https://searx.peprolinbot.com/search?q={searchTerms}"; } ];
             icon = "https://searx.peprolinbot.com/favicon.ico";
           };
         };
@@ -59,7 +63,7 @@
 
       extensions = {
         force = true;
-        packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+        packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
           ublock-origin # Included in Librewolf
           bitwarden
           libredirect
@@ -71,7 +75,7 @@
           "uBlock0@raymondhill.net".settings = import ./extensions/ublock-origin.nix;
         };
       };
-      bookmarks = {};
+      bookmarks = { };
       settings = {
         webgl.disabled = false;
         privacy.resistFingerprinting = true;
@@ -99,10 +103,20 @@
         browser.uiCustomization.state = builtins.toJSON {
           currentVersion = 20;
           newElementCount = 5;
-          dirtyAreaCache = ["nav-bar" "PersonalToolbar" "toolbar-menubar" "TabsToolbar" "widget-overflow-fixed-list"];
+          dirtyAreaCache = [
+            "nav-bar"
+            "PersonalToolbar"
+            "toolbar-menubar"
+            "TabsToolbar"
+            "widget-overflow-fixed-list"
+          ];
           placements = {
-            PersonalToolbar = ["personal-bookmarks"];
-            TabsToolbar = ["tabbrowser-tabs" "new-tab-button" "alltabs-button"];
+            PersonalToolbar = [ "personal-bookmarks" ];
+            TabsToolbar = [
+              "tabbrowser-tabs"
+              "new-tab-button"
+              "alltabs-button"
+            ];
             nav-bar = [
               "back-button"
               "forward-button"
@@ -115,11 +129,16 @@
               "_testpilot-containers-browser-action" # Multi-account containers
               "unified-extensions-button" # Button with the rest of extensions
             ];
-            toolbar-menubar = ["menubar-items"];
-            unified-extensions-area = [];
-            widget-overflow-fixed-list = [];
+            toolbar-menubar = [ "menubar-items" ];
+            unified-extensions-area = [ ];
+            widget-overflow-fixed-list = [ ];
           };
-          seen = ["developer-button" "ublock0_raymondhill_net-browser-action" "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" "_testpilot-containers-browser-action"];
+          seen = [
+            "developer-button"
+            "ublock0_raymondhill_net-browser-action"
+            "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
+            "_testpilot-containers-browser-action"
+          ];
         };
       };
     };

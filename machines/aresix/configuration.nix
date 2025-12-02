@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./modules/reverse-proxy.nix
     ./modules/home-assistant
@@ -8,8 +9,6 @@
     ./modules/users.nix
   ];
 
-  services.logind.lidSwitch = "ignore";
-  boot.kernelParams = ["consoleblank=60"]; # Blanks console (screen off) after 60s
-
-  system.stateVersion = "25.05";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
+  boot.kernelParams = [ "consoleblank=60" ]; # Blanks console (screen off) after 60s
 }
