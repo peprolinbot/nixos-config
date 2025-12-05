@@ -1,10 +1,10 @@
 {
-  pkgs,
   lib,
   config,
   ...
-}: {
-  imports = [./regreet.nix];
+}:
+{
+  imports = [ ./regreet.nix ];
 
   options = {
     programs.hyprland.autoLogin.username = lib.mkOption {
@@ -21,19 +21,10 @@
       withUWSM = true;
     };
 
-    xdg.portal = {
-      enable = true;
-      wlr.enable = true;
-      xdgOpenUsePortal = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-gtk
-      ];
-    };
-
-    services.greetd.settings.initial_session = let
-      username = config.programs.hyprland.autoLogin.username;
-    in
+    services.greetd.settings.initial_session =
+      let
+        username = config.programs.hyprland.autoLogin.username;
+      in
       lib.mkIf (!isNull username) {
         command = "uwsm start hyprland-uwsm.desktop";
         user = username;
