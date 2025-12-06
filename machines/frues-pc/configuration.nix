@@ -22,6 +22,17 @@
 
   services.sunshine.autoStart = true;
 
+  programs.steam.gamescopeSession = {
+    enable = true;
+    args = [
+      "--prefer-output"
+      "DP-1,*"
+      "--rt"
+      "--adaptive-sync"
+      "--steam"
+    ];
+  };
+
   home-manager.users.pedro.wayland.windowManager.hyprland.settings = {
     monitor = [
       "DP-2, 1920x1080@60, 0x0, 1"
