@@ -20,6 +20,15 @@
     recommendedTlsSettings = true;
 
     virtualHosts = {
+      "_" = {
+        default = true;
+        rejectSSL = true; # Avoid serving a certificate
+
+        locations."/" = {
+          return = "404";
+        };
+      };
+
       "idm.peprolinbot.com" = {
         forceSSL = true;
         enableACME = true;
