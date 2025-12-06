@@ -9,7 +9,7 @@
     enableServer = true;
     enableClient = true;
 
-    package = pkgs.kanidm_1_7;
+    package = pkgs.kanidm_1_8;
 
     serverSettings = {
       version = "2"; # Configuration file version.
