@@ -1,39 +1,78 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 {
-  services.postgresql =
-    let
-      databases = [
-        "matrix-synapse"
-        "mautrix-signal"
-        "mautrix-whatsapp"
-        "mautrix-telegram"
-      ];
-    in
-    {
-      enable = true;
+  clan.core.postgresql = {
+    enable = true;
 
-      ensureDatabases = databases;
-      # Create a user for each database
-      ensureUsers = map (id: {
-        name = id;
-        ensureDBOwnership = true;
-      }) databases;
-
-      initialScript = pkgs.writeText "backend-initScript" ''
-        CREATE ROLE "matrix-synapse" WITH LOGIN;
-        CREATE DATABASE "matrix-synapse"
-          WITH ENCODING = 'UTF8'
-          TEMPLATE = template0
-          OWNER = "matrix-synapse"
-          LC_COLLATE = 'C'
-          LC_CTYPE = 'C';
-      '';
-
+    users = {
+      matrix-synapse = { };
+      mautrix-signal = { };
+      mautrix-whatsapp = { };
+      mautrix-telegram = { };
     };
+
+    databases = {
+      matrix-synapse = {
+        create.options = {
+          ENCODING = "UTF8";
+          TEMPLATE = "template0";
+          OWNER = "matrix-synapse";
+          LC_COLLATE = "C";
+          LC_CTYPE = "C";
+        };
+        restore.stopOnRestore = [ "matrix-synapse" ];
+      };
+      mautrix-signal = {
+        restore.stopOnRestore = [ "mautrix-signal" ];
+      };
+      mautrix-whatsapp = {
+        restore.stopOnRestore = [ "mautrix-whatsapp" ];
+      };
+      mautrix-telegram = {
+        restore.stopOnRestore = [ "mautrix-telegram" ];
+      };
+    };
+  };
+
+  clan.core.state.matrix = {
+    folders = [ "/var/backup/matrix-synapse" ];
+
+    preBackupScript = ''
+      export PATH=${
+        lib.makeBinPath [
+          pkgs.coreutils
+          pkgs.rsync
+        ]
+      }
+      mkdir -p /var/backup/matrix-synapse
+        
+      rsync -avH --delete --numeric-ids --include='homeserver.signing.key' --include='media_store' --exclude='media_store/remote_*' --exclude='media_store/url_cache*' /var/lib/matrix-synapse /var/backup/matrix-synapse/
+    '';
+
+    postRestoreScript = ''
+      export PATH=${
+        lib.makeBinPath [
+          config.systemd.package
+          pkgs.coreutils
+          pkgs.rsync
+        ]
+      }
+
+      service_status="$(systemctl is-active matrix-synapse)"
+
+      systemctl stop matrix-synapse
+
+      rsync -avH --delete --numeric-ids /var/backup/matrix-synapse/ /var/lib/matrix-synapse/
+
+      if [ "$service_status" = "active" ]; then
+        systemctl start matrix-synapse
+      fi
+    '';
+  };
 
   services.matrix-synapse = {
     enable = true;
