@@ -118,7 +118,20 @@
       roles.default.extraModules = [ modules/desktop/gaming.nix ];
     };
 
-    # Docs: https://docs.clan.lol/reference/clanServices/mycelium/
+    borgbackup = {
+      roles.server.machines.aresix = {
+        settings.address = "aresix.clan";
+      };
+
+      roles.client.tags.server = { };
+    };
+
+    yggdrasil = {
+      roles.default = {
+        tags.server = { };
+      };
+    };
+
     mycelium = {
       roles.peer.tags.server = { };
     };
