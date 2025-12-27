@@ -50,6 +50,15 @@
           '';
         };
       };
+
+      "searx.peprolinbot.com" = {
+        forceSSL = true;
+        enableACME = true;
+
+        # Rest of configuration done in services.searx.configreNginx
+
+      };
+
     };
   };
 }
