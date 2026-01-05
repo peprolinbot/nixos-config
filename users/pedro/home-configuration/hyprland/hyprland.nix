@@ -13,13 +13,12 @@
 
     settings =
       let
-        app_menu = "${pkgs.fuzzel}/bin/fuzzel";
+        app_menu = "vicinae toggle";
       in
       {
         # Autostart
         exec-once = [
           "uwsm app -- nm-applet"
-          "uwsm app -- ${pkgs.wl-clip-persist}/bin/persist --clipboard regular"
           "uwsm app -- bash -c 'if [ ! -f ~/.config/hypr/wallpaper.png ]; then wall-change ~/.config/hypr/default_wallpaper.png; fi'"
           "uwsm app -- ${pkgs.swaybg}/bin/swaybg -m fill -i ~/.config/hypr/wallpaper.png &"
           "uwsm app -- ${pkgs.poweralertd}/bin/poweralertd"
@@ -140,10 +139,9 @@
           "$mainMod SHIFT, F, fullscreen, 1"
           "$mainMod, Space, togglefloating,"
           "$mainMod, D, exec, uwsm app -- ${app_menu}"
-          "$mainMod SHIFT, E, exec, uwsm app -- ${pkgs.bemoji}/bin/bemoji -n"
+          "$mainMod SHIFT, E, exec, vicinae vicinae://extensions/vicinae/vicinae/search-emojis"
           "$mainMod, M, exec, uwsm app -- element-desktop"
           "$mainMod, Y, exec, uwsm app -- kitty spotify_player"
-          "$mainMod, X, exec, uwsm app -- rofi-rbw"
           "$mainMod, Escape, exec, uwsm app -- loginctl lock-session"
           "$mainMod SHIFT, Escape, exec, uwsm app -- shutdown-script"
           "$mainMod, P, pseudo,"
@@ -235,7 +233,7 @@
           "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 100%-"
 
           # clipboard manager
-          "$mainMod, V, exec, cliphist list | fuzzel --dmenu --prompt '📋 ' | cliphist decode | wl-copy"
+          "$mainMod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
         ];
 
         # Bindings that work when locked
@@ -307,6 +305,12 @@
           "noinitialfocus,class:^(xwaylandvideobridge)$"
           "maxsize 1 1,class:^(xwaylandvideobridge)$"
           "noblur,class:^(xwaylandvideobridge)$"
+        ];
+
+        layerrule = [
+          "blur,vicinae"
+          "ignorealpha 0, vicinae"
+          "noanim, vicinae" # disable fade animation for vicinae only
         ];
 
         monitor = [
