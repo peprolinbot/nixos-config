@@ -33,6 +33,7 @@
     ];
   };
 
+  services.hardware.openrgb.enable = true;
   home-manager.users.pedro.wayland.windowManager.hyprland.settings = {
     monitor = [
       "DP-2, 1920x1080@60, 0x0, 1"
@@ -40,9 +41,15 @@
       "HDMI-A-1, 1920x1080@75, 3840x0, 1"
     ];
     exec-once = [
-      "uwsm app -- ckb-next -b"
+      "uwsm app -- openrgb --startminimized"
     ];
   };
+  home-manager.users.pedro.services.hypridle.settings.listener = [
+    {
+      timeout = 270; # 4.5 min
+      on-timeout = "openrgb -b 0";
+      on-resume = "openrgb -b 100";
+    }
+  ];
 
-  hardware.ckb-next.enable = true;
 }
