@@ -43,6 +43,14 @@
         "vm"
       ];
     };
+    bernese = {
+      tags = [
+        "server"
+        "headless"
+        "vm"
+        "media"
+      ];
+    };
   };
 
   # Docs: See https://docs.clan.lol/reference/clanServices
