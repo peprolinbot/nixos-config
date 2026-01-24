@@ -3,51 +3,83 @@
   pkgs,
   lib,
   ...
-}: let
-  hasDE = osConfig.hm-pedro.de != "none";
-in {
+}:
+{
   xdg.mimeApps = lib.mkIf (osConfig.hm-pedro.de != "none") {
     enable = true;
-    defaultApplications =
-      {
-        "application/pdf" = ["okularApplication_pdf.desktop" "org.gnome.Evince.desktop"];
-        "text/plain" = ["org.gnome.TextEditor.desktop"];
-      }
-      // builtins.listToAttrs (map (key: {
-        name = "image/${key}";
-        value = ["vimiv.desktop"];
-      }) ["png" "jpeg" "webp" "bmp" "gif"])
-      // builtins.listToAttrs (map (key: {
-        name = "video/${key}";
-        value = ["mpv.desktop"];
-      }) ["mp4" "x-matroska" "webm"]);
+    defaultApplications = {
+      "application/pdf" = [
+        "okularApplication_pdf.desktop"
+        "org.gnome.Evince.desktop"
+      ];
+      "text/plain" = [ "org.gnome.TextEditor.desktop" ];
+    }
+    // builtins.listToAttrs (
+      map
+        (key: {
+          name = "image/${key}";
+          value = [ "vimiv.desktop" ];
+        })
+        [
+          "png"
+          "jpeg"
+          "webp"
+          "bmp"
+          "gif"
+        ]
+    )
+    // builtins.listToAttrs (
+      map
+        (key: {
+          name = "video/${key}";
+          value = [ "mpv.desktop" ];
+        })
+        [
+          "mp4"
+          "x-matroska"
+          "webm"
+        ]
+    );
   };
 
-  home.packages = with pkgs; ([
-      # CLI utils
-      bitwarden-cli
-      file # Show file information
-      gtrash # rm replacement, put deleted files in system trash
-      imagemagick
-      lazygit # Simple terminal UI for git commands
-      jq # command-line JSON processor
-      nitch # neofetch-like util
-      tdf # cli pdf viewer
-      todo # cli todo list
-      yazi # terminal file manager
-      yt-dlp
-      caligula # TUI for disk imaging
-      ffmpeg
-      killall
-      man-pages # extra man pages
-      openssl
-      unzip
-      wget
-      usbutils
-      gotify-cli
-    ]
-    ++ (
-      lib.lists.optionals (osConfig.hm-pedro.de != "none") [
+  home.packages =
+    with pkgs;
+    (
+      [
+        # CLI utils
+        bitwarden-cli
+        file # Show file information
+        gtrash # rm replacement, put deleted files in system trash
+        imagemagick
+        lazygit # Simple terminal UI for git commands
+        jq # command-line JSON processor
+        nitch # neofetch-like util
+        tdf # cli pdf viewer
+        todo # cli todo list
+        yazi # terminal file manager
+        yt-dlp
+        caligula # TUI for disk imaging
+        ffmpeg
+        killall
+        man-pages # extra man pages
+        openssl
+        unzip
+        wget
+        usbutils
+        gotify-cli
+
+        # Stuff for quick coding
+        (python3.withPackages (
+          python-pkgs: with python-pkgs; [
+            numpy
+            pandas
+            requests
+          ]
+        ))
+        gcc
+        gnumake
+      ]
+      ++ (lib.lists.optionals (osConfig.hm-pedro.de != "none") [
         # CLI but only makes sense in DE
         pamixer # pulseaudio command line mixer
         playerctl # controller for media players
@@ -88,12 +120,10 @@ in {
         wireguard-tools
         openconnect
         networkmanager-openconnect
-      ]
-    )
-    ++ (
-      lib.lists.optionals (osConfig.hm-pedro.de == "hyprland") [
+      ])
+      ++ (lib.lists.optionals (osConfig.hm-pedro.de == "hyprland") [
         wl-clipboard # clipboard utils for wayland (wl-copy, wl-paste)
         wtype # xdotool type for wayland
-      ]
-    ));
+      ])
+    );
 }
