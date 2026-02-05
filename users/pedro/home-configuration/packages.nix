@@ -67,6 +67,7 @@
         wget
         usbutils
         gotify-cli
+        nmap
 
         # Stuff for quick coding
         (python3.withPackages (
@@ -110,6 +111,7 @@
         gparted # partition manager
         vimiv-qt # Image viewer, vim-like
         webcord
+        wireshark
 
         # Wine stuff
         winetricks
