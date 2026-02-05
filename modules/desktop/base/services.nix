@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services = {
     gvfs.enable = true;
     gnome.gnome-keyring.enable = true;
@@ -8,7 +9,10 @@
 
     flatpak.enable = true;
 
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = with pkgs; [ gutenprint ];
+    };
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -18,5 +22,5 @@
     blueman.enable = true;
   };
 
-  environment.systemPackages = [pkgs.libsecret];
+  environment.systemPackages = [ pkgs.libsecret ];
 }
