@@ -54,7 +54,6 @@
         }
         {
           name = "markdown";
-          auto-format = true;
           formatter = {
             command = "${pkgs.deno}/bin/deno";
             args = [
