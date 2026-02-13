@@ -137,11 +137,15 @@
     yggdrasil = {
       roles.default = {
         tags.server = { };
+        tags.desktop = { };
       };
     };
 
     mycelium = {
-      roles.peer.tags.server = { };
+      roles.peer = {
+        tags.server = { };
+        tags.desktop = { };
+      };
     };
 
     # Fallback: Secure connections via Tor
