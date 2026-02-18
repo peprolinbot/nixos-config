@@ -52,6 +52,17 @@
 
         # Rest in nextcloud module
       };
+
+      "whiteboard.nextcloud.peprolinbot.com" = {
+        forceSSL = true;
+        enableACME = true;
+
+        locations."/" = {
+          proxyPass = "http://localhost:3002";
+
+          proxyWebsockets = true;
+        };
+      };
     };
   };
 }
