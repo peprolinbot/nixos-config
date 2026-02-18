@@ -1,15 +1,10 @@
 {
   config,
   lib,
-  outputs,
   pkgs,
   ...
 }:
 {
-  nixpkgs.overlays = [
-    outputs.overlays.unstable-packages
-  ];
-
   clan.core.vars.generators.immich = {
     prompts.openid_secret = {
       description = "OpenID secret for OAuth";

@@ -45,6 +45,13 @@
           '';
         };
       };
+
+      ${config.services.nextcloud.hostName} = {
+        forceSSL = true;
+        enableACME = true;
+
+        # Rest in nextcloud module
+      };
     };
   };
 }
