@@ -50,10 +50,44 @@
     '';
   };
 
+  clan.core.vars.generators.collabora = {
+    prompts.username = {
+      type = "line";
+      description = "Username for the Collabora Online admin console";
+    };
+    prompts.password = {
+      type = "hidden";
+      description = "Password for the Collabora Online admin console";
+    };
+
+    files.envFile.secret = true;
+    script = ''
+      cat <<EOL > $out/envFile
+      username=$(<$prompts/username)
+      password=$(<$prompts/password)
+      EOL
+    '';
+  };
+
   services.nextcloud-whiteboard-server = {
     enable = true;
     settings.NEXTCLOUD_URL = "https://${config.services.nextcloud.hostName}";
     secrets = [ config.clan.core.vars.generators.nextcloud.files.whiteboardSecretFile.path ];
+  };
+
+  virtualisation.oci-containers.containers.collabora = {
+    image = "docker.io/collabora/code:latest";
+    ports = [ "127.0.0.1:9980:9980/tcp" ];
+    environment = {
+      server_name = "collabora.peprolinbot.com";
+      aliasgroup1 = "https://${config.services.nextcloud.hostName}:443";
+      dictionaries = "en_GB en_US es_ES fr_FR gl_ES";
+      extra_params = "--o:ssl.enable=false --o:ssl.termination=true";
+    };
+    # environmentFiles = [ config.clan.core.vars.generators.collabora.files.envFile.path ];
+    extraOptions = [
+      "--pull=newer"
+    ];
   };
 
   services.nextcloud = {

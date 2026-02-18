@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   imports = [
     modules/immich.nix
@@ -11,7 +11,5 @@
     fsType = "ext4";
   };
 
-  virtualisation.docker.enable = true;
-  users.users.pedro.extraGroups = [ "docker" ];
-  environment.systemPackages = [ pkgs.docker-compose ];
+  virtualisation.oci-containers.backend = "podman";
 }
