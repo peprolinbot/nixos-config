@@ -55,10 +55,9 @@
         forceSSL = true;
         enableACME = true;
 
-        # Rest of configuration done in services.searx.configreNginx
+        # Rest of configuration done in services.searx.configureNginx
 
       };
-
     };
   };
 }
