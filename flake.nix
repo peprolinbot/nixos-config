@@ -3,6 +3,8 @@
     clan-core.url = "https://git.clan.lol/clan/clan-core/archive/25.11.tar.gz";
     nixpkgs.follows = "clan-core/nixpkgs";
 
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,11 +34,13 @@
       ...
     }@inputs:
     let
+      inherit (self) outputs;
+
       # Usage see: https://docs.clan.lol
       clan = clan-core.lib.clan {
         inherit self;
         imports = [ ./clan.nix ];
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs outputs; };
       };
     in
     {
@@ -58,5 +62,14 @@
           });
 
       clan = clan.config;
+
+      overlays = {
+        unstable-packages = final: _prev: {
+          unstable = import inputs.nixpkgs-unstable {
+            system = final.system;
+            config.allowUnfree = true;
+          };
+        };
+      };
     };
 }
