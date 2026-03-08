@@ -5,6 +5,10 @@
   ...
 }:
 {
+  networking.firewall.allowedTCPPorts = [
+    636 # LDAP
+  ];
+
   services.kanidm = {
     enableServer = true;
     enableClient = true;

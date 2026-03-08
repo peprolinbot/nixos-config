@@ -1,4 +1,13 @@
 { config, ... }:
+let
+  arrAppsToProxy = [
+    "radarr"
+    "sonarr"
+    "prowlarr"
+    "bazarr"
+  ]; # Will setup Nginx and Oauth2-proxy
+  arrAppDomain = appName: "${appName}.media.peprolinbot.com";
+in
 {
   security.acme = {
     acceptTerms = true;
@@ -112,6 +121,131 @@
           }
         '';
       };
+
+      "seerr.media.peprolinbot.com" = {
+        enableACME = true;
+        forceSSL = true;
+
+        locations."/" = {
+          proxyPass = "http://[::1]:${toString config.nixarr.jellyseerr.port}";
+        };
+      };
+
+      "jellyfin.media.peprolinbot.com" = {
+        enableACME = true;
+        forceSSL = true;
+
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8096";
+        };
+      };
+
+      "${config.services.oauth2-proxy.nginx.domain}" = {
+        enableACME = true;
+        forceSSL = true;
+      };
+
+      "transmission.media.peprolinbot.com" = {
+        enableACME = true;
+        forceSSL = true;
+
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString config.nixarr.transmission.uiPort}";
+          extraConfig = ''
+            include ${config.clan.core.vars.generators.transmission.files.nginxProxySetHeader.path};
+          '';
+        };
+      };
+
+    }
+    // (
+      let
+        arrAppProxy = appName: {
+          enableACME = true;
+          forceSSL = true;
+
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:${
+              toString (
+                let
+                  appCfg = config.nixarr.${appName};
+                in
+                if builtins.hasAttr "port" appCfg then appCfg.port else appCfg.uiPort
+              )
+            }";
+          };
+        };
+        arrAppProxyVhost = appName: {
+          name = arrAppDomain appName;
+          value = arrAppProxy appName;
+        };
+      in
+      (builtins.listToAttrs (builtins.map arrAppProxyVhost arrAppsToProxy))
+    );
+  };
+
+  clan.core.vars.generators.oauth2-proxy = {
+    prompts.oidc_issuer_url = {
+      description = "*Arr Oauth2 Proxy OIDC issuer URL";
+      type = "line";
+      persist = true;
+    };
+    files.oidc_issuer_url.secret = false;
+
+    prompts.client_id = {
+      description = "*Arr Oauth2 Proxy OIDC client id";
+      type = "line";
+      persist = true;
+    };
+    files.client_id.secret = false;
+
+    prompts.client_secret = {
+      description = "*Arr Oauth2 Proxy OIDC client secret";
+      type = "hidden";
+    };
+
+    prompts.cookie_secret = {
+      description = "*Arr Oauth2 Proxy cookie secret";
+      type = "hidden";
+    };
+
+    files.keyFile.secret = true;
+    script = ''
+      cat <<EOL > $out/keyFile
+      OAUTH2_PROXY_CLIENT_SECRET=$(<$prompts/client_secret)
+      OAUTH2_PROXY_COOKIE_SECRET=$(<$prompts/cookie_secret)
+      EOL
+    '';
+  };
+
+  services.oauth2-proxy = {
+    enable = true;
+
+    provider = "oidc";
+    scope = "openid email";
+    oidcIssuerUrl = config.clan.core.vars.generators.oauth2-proxy.files.oidc_issuer_url.value;
+    keyFile = config.clan.core.vars.generators.oauth2-proxy.files.keyFile.path;
+    clientID = config.clan.core.vars.generators.oauth2-proxy.files.client_id.value;
+    extraConfig = {
+      whitelist-domain = [ "*.media.peprolinbot.com" ];
+      code-challenge-method = "S256";
+    };
+
+    reverseProxy = true;
+    nginx = {
+      domain = "oauth2-proxy.media.peprolinbot.com";
+
+      virtualHosts = builtins.listToAttrs (
+        builtins.map (appName: {
+          name = arrAppDomain appName;
+          value = { };
+        }) arrAppsToProxy
+      );
+    };
+
+    email.domains = [ "*" ];
+    cookie = {
+      domain = ".media.peprolinbot.com";
     };
   };
 }
