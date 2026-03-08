@@ -3,6 +3,7 @@
   imports = [
     modules/immich.nix
     modules/nextcloud.nix
+    modules/nixarr.nix
     modules/reverse-proxy.nix
   ];
 
