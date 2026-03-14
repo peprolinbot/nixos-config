@@ -1,7 +1,11 @@
 {
   inputs = {
-    clan-core.url = "https://git.clan.lol/clan/clan-core/archive/25.11.tar.gz";
-    nixpkgs.follows = "clan-core/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+
+    clan-core = {
+      url = "https://git.clan.lol/clan/clan-core/archive/25.11.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
