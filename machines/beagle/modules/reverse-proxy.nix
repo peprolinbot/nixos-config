@@ -58,6 +58,11 @@
         # Rest of configuration done in services.searx.configureNginx
 
       };
+
+      "bitwarden.peprolinbot.com" = {
+        enableACME = true;
+        # Rest of configuration done in services.vaultwarden.configureNginx
+      };
     };
   };
 }
