@@ -1,5 +1,10 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [fzf git gtrash]; # Required packages
+{ pkgs, inputs, ... }:
+{
+  home.packages = with pkgs; [
+    fzf
+    git
+    gtrash
+  ]; # Required packages
 
   programs.zsh = {
     enable = true;
@@ -9,7 +14,10 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "fzf"];
+      plugins = [
+        "git"
+        "fzf"
+      ];
     };
 
     shellAliases = {
@@ -58,4 +66,8 @@
   programs.starship.enable = true;
 
   programs.fzf.enable = true;
+
+  imports = [ inputs.nix-index-database.homeModules.default ];
+  programs.nix-index.enable = true;
+  programs.nix-index-database.comma.enable = true;
 }
