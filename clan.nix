@@ -23,12 +23,6 @@
         "gaming"
       ];
     };
-    frues-surface3 = {
-      tags = [
-        "desktop"
-        "spain"
-      ];
-    };
     terrier = {
       tags = [
         "server"
