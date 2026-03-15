@@ -49,6 +49,11 @@
             client_max_body_size ${config.services.matrix-synapse.settings.max_upload_size};
           '';
         };
+
+        locations."/_matrix/maubot/" = {
+          proxyPass = "http://127.0.0.1:${toString config.services.maubot.settings.server.port}";
+          proxyWebsockets = true;
+        };
       };
 
       "searx.peprolinbot.com" = {

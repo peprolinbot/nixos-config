@@ -13,6 +13,7 @@
       mautrix-signal = { };
       mautrix-whatsapp = { };
       mautrix-telegram = { };
+      maubot = { };
     };
 
     databases = {
@@ -26,15 +27,12 @@
         };
         restore.stopOnRestore = [ "matrix-synapse" ];
       };
-      mautrix-signal = {
-        restore.stopOnRestore = [ "mautrix-signal" ];
-      };
-      mautrix-whatsapp = {
-        restore.stopOnRestore = [ "mautrix-whatsapp" ];
-      };
-      mautrix-telegram = {
-        restore.stopOnRestore = [ "mautrix-telegram" ];
-      };
+
+      mautrix-signal.restore.stopOnRestore = [ "mautrix-signal" ];
+      mautrix-whatsapp.restore.stopOnRestore = [ "mautrix-whatsapp" ];
+      mautrix-telegram.restore.stopOnRestore = [ "mautrix-telegram" ];
+
+      maubot.restore.stopOnRestore = [ "maubot" ];
     };
   };
 
@@ -134,6 +132,9 @@
         }
       ];
     };
+    extraConfigFiles = [
+      config.clan.core.vars.generators.matrix-synapse-registration.files.configFile.path
+    ];
   };
 
   clan.core.vars.generators.matrix-synapse = {
@@ -149,6 +150,25 @@
       owner = config.systemd.services.matrix-synapse.serviceConfig.User;
       group = config.systemd.services.matrix-synapse.serviceConfig.Group;
     };
+  };
+  clan.core.vars.generators.matrix-synapse-registration = {
+    prompts = {
+      registration_shared_secret = {
+        description = "Allows registration by anyone who also has the shared secret, even if registration is otherwise disabled.";
+        type = "hidden";
+      };
+    };
+
+    files.configFile = {
+      secret = true;
+      owner = config.systemd.services.matrix-synapse.serviceConfig.User;
+      group = config.systemd.services.matrix-synapse.serviceConfig.Group;
+    };
+    script = ''
+      cat <<EOL > $out/configFile
+      registration_shared_secret: $(<$prompts/registration_shared_secret)
+      EOL
+    '';
   };
 
   services.mautrix-whatsapp = {
@@ -230,7 +250,7 @@
 
       database = {
         type = "postgres";
-        uri = "postgresql:///mautrix-signal?host=/run/postgresql";
+        uri = "postgresql:///mautrix-signal?host=/var/run/postgresql";
       };
 
       bridge = {
@@ -335,5 +355,27 @@
       MAUTRIX_TELEGRAM_TELEGRAM_API_HASH = $(<$prompts/telegram_api_hash)
       EOL
     '';
+  };
+
+  services.maubot = {
+    enable = true;
+    settings = {
+      database = "postgresql:///maubot?host=/var/run/postgresql";
+      server.public_url = "https://synapse.peprolinbot.com";
+    };
+    plugins = with config.services.maubot.package.plugins; [
+      rss
+      weather
+      social-media-download
+      dice
+      timer
+      timein
+      choose
+      xkcd
+      # saved
+      # help
+      # homeassistant
+      # duckduckgo
+    ];
   };
 }
