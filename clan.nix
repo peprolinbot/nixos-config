@@ -21,6 +21,7 @@
         "desktop"
         "spain"
         "gaming"
+        "laptop"
       ];
     };
     terrier = {
@@ -109,9 +110,16 @@
     };
 
     desktop-base = {
+      # Something that will have a DE and such
       module.name = "importer";
       roles.default.tags.desktop = { };
       roles.default.extraModules = [ modules/desktop/base ];
+    };
+
+    laptop-base = {
+      module.name = "importer";
+      roles.default.tags.laptop = { };
+      roles.default.extraModules = [ modules/laptop.nix ];
     };
 
     desktop-gaming = {
