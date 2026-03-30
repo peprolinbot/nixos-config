@@ -157,6 +157,15 @@ in
         };
       };
 
+      "qui.media.peprolinbot.com" = {
+        enableACME = true;
+        forceSSL = true;
+
+        locations."/" = {
+          proxyPass = "http://${config.services.qui.settings.host}:${toString config.services.qui.settings.port}";
+        };
+      };
+
     }
     // (
       let
