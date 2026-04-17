@@ -131,13 +131,26 @@ in
         };
       };
 
-      "jellyfin.media.peprolinbot.com" = {
+      "jellyfin.media.peprolinbot.com" = rec {
+        # See https://jellyfin.org/docs/general/post-install/networking/reverse-proxy/nginx/
         enableACME = true;
         forceSSL = true;
 
         locations."/" = {
           proxyPass = "http://127.0.0.1:8096";
+          extraConfig = ''
+            proxy_buffering off;
+          '';
         };
+
+        locations."/socket" = {
+          proxyPass = locations."/".proxyPass;
+          proxyWebsockets = true;
+        };
+
+        extraConfig = ''
+          client_max_body_size 20M;
+        '';
       };
 
       "${config.services.oauth2-proxy.nginx.domain}" = {
