@@ -1,9 +1,6 @@
 {
-  boot.loader.grub = {
+  boot.loader.limine = {
     enable = true;
-    efiSupport = true;
-    efiInstallAsRemovable = true;
-    device = "nodev";
   };
 
   disko.devices = {
@@ -15,13 +12,13 @@
           type = "gpt";
           partitions = {
             ESP = {
-              size = "500M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["umask=0077"];
+                mountOptions = [ "umask=0077" ];
               };
             };
             luks-root = {
