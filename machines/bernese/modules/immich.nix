@@ -14,7 +14,7 @@
   };
   services.immich = {
     enable = true;
-    package = pkgs.unstable.immich;
+    package = pkgs.immich;
 
     database.enable = true;
 
