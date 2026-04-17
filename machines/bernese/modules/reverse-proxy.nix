@@ -158,18 +158,6 @@ in
         forceSSL = true;
       };
 
-      "transmission.media.peprolinbot.com" = {
-        enableACME = true;
-        forceSSL = true;
-
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString config.nixarr.transmission.uiPort}";
-          extraConfig = ''
-            include ${config.clan.core.vars.generators.transmission.files.nginxProxySetHeader.path};
-          '';
-        };
-      };
-
       "qui.media.peprolinbot.com" = {
         enableACME = true;
         forceSSL = true;

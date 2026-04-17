@@ -16,37 +16,6 @@
     };
   };
 
-  clan.core.vars.generators.transmission = {
-    prompts.rpc-username = {
-      description = "Transmission rpc-username";
-      type = "line";
-    };
-
-    prompts.rpc-password = {
-      description = "Transmission rpc-password";
-      type = "hidden";
-    };
-
-    files.credentialsFile.secret = true;
-    files.nginxProxySetHeader = {
-      secret = true;
-      owner = "nginx";
-      group = "nginx";
-    };
-    script = ''
-      cat <<EOL > $out/credentialsFile
-      {
-        "rpc-username": "$(<$prompts/rpc-username)",
-        "rpc-password": "$(<$prompts/rpc-password)"
-      }
-      EOL
-
-      cat <<EOL > $out/nginxProxySetHeader
-      proxy_set_header Authorization "Basic $(echo -n "$(<$prompts/rpc-username):$(<$prompts/rpc-password)" | base64 -w 0)";
-      EOL
-    '';
-  };
-
   nixarr = {
     enable = true;
     mediaDir = "/data/media";
@@ -60,20 +29,6 @@
     jellyfin = {
       enable = true;
       openFirewall = false;
-    };
-
-    transmission = {
-      enable = true;
-      vpn.enable = true;
-      peerPort = 23068; # Forwarded by VPN
-
-      flood.enable = true;
-      openFirewall = false;
-
-      extraSettings = {
-        rpc-authentication-required = true;
-      };
-      credentialsFile = config.clan.core.vars.generators.transmission.files.credentialsFile.path;
     };
 
     bazarr = {
